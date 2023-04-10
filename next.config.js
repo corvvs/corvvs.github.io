@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === 'production';
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: process.env.NODE_ENV === "production" ? "/life" : "",
+  assetPrefix: isProduction ? "/life" : "",
   images: {
     unoptimized: true,
   },
-  NODE_ENV: process.env.NODE_ENV,
-}
+  env: {
+    NODE_ENV: process.env.NODE_ENV,
+    assetPrefix: isProduction ? "/life" : "",
+    isProduction,
+  },
+};
 
 module.exports = nextConfig
