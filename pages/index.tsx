@@ -10,10 +10,11 @@ const GridBlock = (props: {
 }) => {
   return (
     <div className="
+      column-item
       flex flex-col items-center p-[0.05em]
-      opacity-60 hover:opacity-100
+      opacity-30 hover:backdrop-blur-sm hover:opacity-100 cursor-pointer border-[0.1em]
     ">
-      <div className="flex flex-col w-40 border-[0.1em] p-2">
+      <div className="flex flex-col w-40 p-2 text-xl font-bold tracking-widest">
         { props.title }
       </div>
     </div>
@@ -25,17 +26,23 @@ const ColumnHeader = (props: {
 }) => {
   return (
     <div className="
-      flex flex-col items-center p-[0.05em]
+      column-header
+      flex flex-col items-center p-[0.05em] border-[0.1em]
     ">
       <div className="
-        column-header
         text-sm
-        flex flex-col w-40 border-[0.1em] p-0 text-center
+        flex flex-col w-40 p-0 text-center
       ">
         { props.title }
       </div>
     </div>
   )
+}
+
+const Credit = () => {
+  return (<p>
+    2023 Kawada, Yosuke
+  </p>)
 }
 
 export default function Home() {
@@ -47,12 +54,12 @@ export default function Home() {
       className="flex min-h-screen flex-col items-start justify-between p-24"
       style={{ backgroundImage: `url(${assetPrefix}/bg.jpg)`, backgroundSize: "cover" }}
     >
-      <div className='flex flex-col gap-1 backdrop-blur-sm'>
-        <ColumnHeader title="cat" />
-        <GridBlock title="個人情報" />
+      <div className='flex flex-col gap-1'>
+        <ColumnHeader title="#" />
+        <GridBlock title="作者の情報" />
         <GridBlock title="制作物" />
-        <GridBlock title="playground" />
       </div>
+      <Credit />
     </main>
   )
 }
