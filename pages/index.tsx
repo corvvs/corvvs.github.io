@@ -1,13 +1,11 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import getConfig from 'next/config';
 
-const conf = getConfig();
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const assetPrefix = conf.assetPrefix || "";
+  const assetPrefix = process.env.assetPrefix || "";
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
