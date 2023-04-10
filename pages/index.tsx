@@ -14,7 +14,7 @@ const GridBlock = (props: {
       flex flex-col items-center p-[0.05em]
       opacity-30 hover:backdrop-blur-sm hover:opacity-100 cursor-pointer border-[0.1em]
     ">
-      <div className="flex flex-col w-40 p-2 text-xl font-bold tracking-widest">
+      <div className="flex flex-col w-40 p-1 px-2 text-xl font-bold tracking-widest">
         { props.title }
       </div>
     </div>
