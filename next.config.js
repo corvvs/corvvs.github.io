@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   env: {
-    NODE_ENV: process.env.NODE_ENV,
+    ne: process.env.NODE_ENV,
     assetPrefix: isProduction ? "/life" : "",
     isProduction,
   },
