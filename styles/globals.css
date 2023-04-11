@@ -80,3 +80,21 @@ body {
   border-color: rgb(209, 217, 206);
   font-family: "MaruMonica";
 }
+
+.bio-sub-header {
+  border-bottom: 1px solid;
+}
+
+.lang-well {
+  font-weight: bold;
+}
+
+.lang-ok {
+  opacity: 0.6;
+}
+
+.lang-not-ok {
+  opacity: 0.3;
+}
+
+
