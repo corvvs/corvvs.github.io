@@ -4,6 +4,6 @@ type Props = {
 };
 export const InlineIcon = ({ i, className }: Props) => {
   return (
-    <div className={`inline-block ${className || 'p-1'} align-middle`}>{i}</div>
+    <span className={`inline-block ${className || 'p-1'} align-middle`}>{i}</span>
   );
 };

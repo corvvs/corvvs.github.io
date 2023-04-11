@@ -6,7 +6,6 @@ const assetPrefix = process.env.assetPrefix || "";
 
 const AboutMe = dynamic(() => import('../components/AboutMe'));
 
-
 const GridBlock = (props: {
   title: string;
 }) => {

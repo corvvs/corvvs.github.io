@@ -4,6 +4,21 @@ import { InlineIcon } from './InlineIcon';
 
 const assetPrefix = process.env.assetPrefix || "";
 
+const SocialItem = (props: {
+  service: string;
+  url: string;
+  icon?: JSX.Element;
+  id: string;
+}) => {
+  return <li className='flex flex-row'>
+    { props.service }
+    <a href={props.url} className='flex flex-row'>
+      {props.icon ? <InlineIcon i={props.icon}/> : <span className='w-2' />}
+      { props.id }
+    </a>
+  </li>;
+}
+
 export default function AboutMe() {
   return (<div className='flex flex-col backdrop-blur-sm border-[0.1em] gap-8 p-8'>
 
@@ -29,13 +44,24 @@ export default function AboutMe() {
       <li>富山県立 呉羽高等学校 卒業</li>
       <li>東京工業大学 基礎物理学専攻 修了</li>
       <li>東京都在住</li>
-      <li>なんでもや(らないといけないので仕方なくや)る系Webエンジニア</li>
+      <li>なんでもや<span className='text-sm opacity-50'>(らないといけないので仕方なくや)</span>る系Webエンジニア</li>
     </ul>
 
     <ul>
       <li>餅とこんにゃくが苦手</li>
       <li>きのこと雪見だいふくは好き</li>
     </ul>
+
+    <div>
+      <h3 className='bio-sub-header'>関心事</h3>
+      <ul className='flex flex-row flex-wrap gap-4'>
+      <li>手触りのいいUI</li>
+      <li>SVG</li>
+      <li>GIS</li>
+      <li>可視化</li>
+      </ul>
+    </div>
+
 
     <div>
       <h3 className='bio-sub-header'>書いたことがある言語リスト</h3>
@@ -56,20 +82,9 @@ export default function AboutMe() {
     <div>
       <h3 className='bio-sub-header'>Social</h3>
       <ul>
-        <li>
-          GitHub
-          <a href="https://github.com/corvvs">
-            <InlineIcon i={<Fa.FaGithub />}/>
-            @corvvs
-          </a>
-        </li> 
-        <li>
-          Twitter
-          <a href="https://twitter.com/corvvs">
-            <InlineIcon i={<Fa.FaTwitter />}/>
-            @corvvs
-          </a>
-        </li> 
+      <SocialItem service='GitHub' url="https://github.com/corvvs" icon={<Fa.FaGithub />} id="@corvvs"/>
+      <SocialItem service='Twitter' url="https://twitter.com/corvvs" icon={<Fa.FaTwitter />} id="@corvvs"/>
+      <SocialItem service='Qiita' url="https://qiita.com/corvvs" id="@corvvs"/>
       </ul>
     </div>
   </div>)
