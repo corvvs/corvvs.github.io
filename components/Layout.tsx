@@ -31,7 +31,7 @@ const Outer = (props: {
         flex flex-col items-center p-[0.05em]
         hover:backdrop-blur-sm hover:opacity-100 cursor-pointer border-[0.1em]
       "
-        onClick={() => router.push(`/${props.path || ""}`)}
+        onClick={() => router.push(`${props.path || ""}`)}
       >
         {props.children}
       </div>
@@ -69,9 +69,12 @@ export default function Layout(props: {
     { title: "制作物", },
   ];
 
-  return (
+  return (<div
+      className="flex min-h-screen flex-row justify-stretch"
+      style={{ backgroundImage: `url(${assetPrefix}/bg/lofi_${backgroundImage})`, backgroundSize: "cover" }}
+    >
     <main
-      className="flex min-h-screen flex-col items-start justify-between p-24 background-image"
+      className="flex min-h-screen flex-col items-start justify-between grow shrink p-24"
       style={{ backgroundImage: `url(${assetPrefix}/bg/${backgroundImage})`, backgroundSize: "cover" }}
     >
       <div className='flex flex-row gap-4'>
@@ -100,5 +103,5 @@ export default function Layout(props: {
         <ChangeBackgroundImage />
       </div>
     </main>
-  )
+  </div>)
 }
