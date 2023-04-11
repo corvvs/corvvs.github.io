@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import * as Fa from 'react-icons/fa';
 import { InlineIcon } from './InlineIcon';
-
-const assetPrefix = process.env.assetPrefix || "";
+import { assetPrefix } from '@/constants/path';
 
 const SocialItem = (props: {
   service: string;
