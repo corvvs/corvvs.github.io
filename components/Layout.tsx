@@ -4,13 +4,22 @@ import { useAtom } from "jotai";
 import { Credit } from "./Credit";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
-import * as Fa from 'react-icons/fa';
+import * as Bs from 'react-icons/bs';
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
+import { InlineIcon } from "./InlineIcon";
 
+
+// [Item]
+// 以下の性質を持つコンポーネント:
+// - クリックした時の遷移先として `path: string` を持つ.
+// - パラメータ `active: boolean` を取る or 表示文字列として`title: string` を持つ.
+
+
+type ItemComponent = (props: { active: boolean; path?: string; }) => JSX.Element;
 
 type ItemParam = {
-  title: (() => JSX.Element) | string;
+  title: ItemComponent | string;
   path?: string;
 };
 
@@ -46,15 +55,31 @@ const Outer = (props: Omit<ItemParam, "title"> & {
 const GridBlock = (props: ItemParam & {
   active?: boolean;
 }) => {
-  const Inner = typeof props.title === "string" ? () => <>{ props.title }</> : props.title;
+  const t = props.title;
+  if (typeof t === "function") {
+    return t({ active: !!props.active, path: props.path });
+  }
   return (
     <Outer active={props.active} path={props.path}>
-      <div className="flex flex-col w-40 p-1 px-2 text-xl font-bold tracking-wide">
-        <Inner />
-      </div>
+      <div className="flex flex-col w-40 p-1 px-2 text-xl font-bold tracking-wide">{t}</div>
     </Outer>
   );
 };
+
+const ConfigButton = (props: { active: boolean, path?: string }) => {
+  const router = useRouter();
+  const className = props.active
+    ? "flex flex-row border-[1px] column-item-active rounded-full p-1 text-xl"
+    : "flex flex-row border-[1px] column-item rounded-full p-1 text-xl";
+  return <div className="flex flex-row items-center justify-center">
+    <button
+      className={className}
+      onClick={() => router.push(`${props.path || ""}`)}
+    >
+      <InlineIcon i={<Bs.BsEasel />}/>
+    </button>
+  </div>;
+}
 
 export default function Layout(props: {
   children?: ReactNode;
@@ -67,7 +92,7 @@ export default function Layout(props: {
   const items: ItemParam[] = [
     { title: "作者の情報", path: "about_me", },
     { title: "制作物", },
-    { title: () => <Fa.FaCog />, path: "config", },
+    { title: ConfigButton, path: "config", },
   ];
 
   return (<div
