@@ -79,11 +79,11 @@ export default function Layout(props: {
   ];
   return (<><div
       className="flex min-h-screen flex-row justify-stretch"
-      style={{ backgroundImage: `url(${assetPrefix}/bg/lofi_${backgroundImage})`, backgroundSize: "cover" }}
+      style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
     <main
       className="flex min-h-screen flex-col items-start justify-between grow shrink p-24"
-      style={{ backgroundImage: `url(${assetPrefix}/bg/${backgroundImage})`, backgroundSize: "cover" }}
+      style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
       <div className='flex flex-row gap-4'>
         <div className='flex flex-col gap-1'>

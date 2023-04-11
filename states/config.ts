@@ -7,5 +7,5 @@ export const BackgroundImageNames = [
 type BackgroundImageName = typeof BackgroundImageNames[number];
 
 export const siteConfigAtom = {
-  backgroundImage: atom<BackgroundImageName>("bg.jpg"),
+  backgroundImage: atom<BackgroundImageName | null>("bg.jpg"),
 };
