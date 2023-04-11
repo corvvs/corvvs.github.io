@@ -79,6 +79,7 @@ body {
 
 .column-item:hover {
   border-color: rgb(209, 217, 206);
+  backdrop-filter: blur(1em);
 }
 
 * {

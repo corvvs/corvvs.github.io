@@ -3,6 +3,7 @@ import { InlineIcon } from './InlineIcon';
 
 export const Credit = () => {
   return (<p>
+    実験場
     2023 Kawada, Yosuke
     <a href="https://github.com/corvvs">
       <InlineIcon i={<Fa.FaGithub />}/>
