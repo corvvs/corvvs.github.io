@@ -73,6 +73,7 @@ export default function AboutMe() {
         <li className='lang-ok'>Swift</li>
         <li className='lang-well'>TypeScript</li>
         <li className='lang-not-ok'>Go</li>
+        <li className='lang-not-ok'>x68_64Asm</li>
         <li className='lang-not-ok'>OCaml</li>
       </ul>
       (触れた順; 色が薄いやつほど自信がない)

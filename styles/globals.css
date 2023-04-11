@@ -87,6 +87,11 @@ body {
   border-color: transparent;
 }
 
+.column-item-active {
+  color: rgb(29, 31, 44);
+  background-color: rgb(209, 217, 206);
+}
+
 .column-item:hover {
   border-color: rgb(209, 217, 206);
 }
