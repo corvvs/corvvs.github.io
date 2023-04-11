@@ -2,16 +2,20 @@ import { assetPrefix } from "@/constants/path";
 import { siteConfigAtom } from "@/states";
 import { useAtom } from "jotai";
 import { Credit } from "./Credit";
-import { ChangeBackgroundImage } from "./config/ChangeBackgroundImage";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
+import * as Fa from 'react-icons/fa';
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 
-const Outer = (props: {
-  active?: boolean;
-  title: string;
+
+type ItemParam = {
+  title: (() => JSX.Element) | string;
   path?: string;
+};
+
+const Outer = (props: Omit<ItemParam, "title"> & {
+  active?: boolean;
   children: ReactNode;
 }) => {
   const router = useRouter();
@@ -39,15 +43,14 @@ const Outer = (props: {
   }
 };
 
-const GridBlock = (props: {
+const GridBlock = (props: ItemParam & {
   active?: boolean;
-  title: string;
-  path?: string;
 }) => {
+  const Inner = typeof props.title === "string" ? () => <>{ props.title }</> : props.title;
   return (
-    <Outer active={props.active} title={props.title} path={props.path}>
+    <Outer active={props.active} path={props.path}>
       <div className="flex flex-col w-40 p-1 px-2 text-xl font-bold tracking-wide">
-        { props.title }
+        <Inner />
       </div>
     </Outer>
   );
@@ -61,12 +64,10 @@ export default function Layout(props: {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
 
-  const items: {
-    title: string;
-    path?: string
-  }[] = [
+  const items: ItemParam[] = [
     { title: "作者の情報", path: "about_me", },
     { title: "制作物", },
+    { title: () => <Fa.FaCog />, path: "config", },
   ];
 
   return (<div
@@ -82,7 +83,7 @@ export default function Layout(props: {
           <ColumnHeader title="#" />
           { items.map((item, i) =>
             <GridBlock
-              key={item.title}
+              key={i}
               active={currentPath == item.path}
               title={item.title} path={item.path}
             />) }
@@ -100,7 +101,6 @@ export default function Layout(props: {
       </div>
       <div className='flex flex-row gap-4'>
         <Credit />
-        <ChangeBackgroundImage />
       </div>
     </main>
   </div>)

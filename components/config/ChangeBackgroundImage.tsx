@@ -12,7 +12,7 @@ export const ChangeBackgroundImage = () => {
         const thumbnailName = `thumb_${name}`;
         return backgroundImage === name ? <div
           key={name}
-          className='flex flex-row items-center justify-center w-10 h-10'
+          className='flex flex-row items-center justify-center w-10 h-10 border-2'
         >
         </div> : <div
           key={name}
