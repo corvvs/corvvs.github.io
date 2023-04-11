@@ -21,17 +21,13 @@ export function ConfigContent() {
 }
 
 export function ConfigButton(props: { active: boolean, path?: string }) {
-  const router = useRouter();
-  const className = props.active
-    ? "flex flex-row border-[1px] column-item-active rounded-full p-1 text-xl"
-    : "flex flex-row border-[1px] column-item rounded-full p-1 text-xl";
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
     setIsOpen(false);
   };
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  const className = isOpen
+    ? "flex flex-row border-[1px] column-item-active rounded-full p-1 text-xl"
+    : "flex flex-row border-[1px] column-item rounded-full p-1 text-xl";
 
   return <>
     <div className="flex flex-row items-center justify-center">
