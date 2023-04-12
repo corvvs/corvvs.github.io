@@ -63,6 +63,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.reader-block {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
 .column-header {
   color: rgb(29, 31, 44);
   background-color: rgb(209, 217, 206);

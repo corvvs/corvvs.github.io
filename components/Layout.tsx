@@ -74,7 +74,7 @@ export default function Layout(props: {
 
   const items: ItemParam[] = [
     { title: "作者の情報", path: "about_me", },
-    { title: "制作物", },
+    { title: "制作物", path: "works", },
     { title: ConfigButton, path: "config", },
   ];
   return (<><div

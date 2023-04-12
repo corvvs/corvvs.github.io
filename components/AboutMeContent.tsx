@@ -19,7 +19,7 @@ const SocialItem = (props: {
 }
 
 export default function AboutMe() {
-  return (<div className='flex flex-col backdrop-blur-sm border-[0.1em] gap-8 p-8'>
+  return (<div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
 
     <div className='flex flex-row gap-8'>
       <div
@@ -42,6 +42,7 @@ export default function AboutMe() {
       <li>1985年生 ♒︎</li>
       <li>富山県立 呉羽高等学校 卒業</li>
       <li>東京工業大学 基礎物理学専攻 修了</li>
+      <li>42Tokyo Lv. 13 (Common Core修了)</li>
       <li>東京都在住</li>
       <li>なんでもや<span className='text-sm opacity-50'>(らないといけないので仕方なくや)</span>る系Webエンジニア</li>
     </ul>
