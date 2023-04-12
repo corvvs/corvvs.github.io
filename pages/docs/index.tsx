@@ -1,22 +1,5 @@
 import Layout from "@/components/Layout";
-import { IconType } from "react-icons";
-
-type DocItem = {
-  title: string;
-  to: string;
-  summary: string;
-};
-
-const ItemsQiita: DocItem[] = [
-  {
-    title: "＜AA木じゃねぇ　木のAAさ＞", to: "https://qiita.com/corvvs/items/6bcb7793c4428255cd21",
-    summary: "42Tokyoの2022年のアドベントカレンダーに書いた二分木の可視化の記事。全然跳ねなかった。",
-  },
-  {
-    title: "目で味わう三体問題", to: "https://qiita.com/corvvs/items/173b983a9a19ac5fe017",
-    summary: "42Tokyoの2021年のアドベントカレンダーに書いた物理シミュレーションの記事。なぜかじわ伸びした。",
-  },
-];
+import { DocItem, ItemsQiita } from "@/data";
 
 const DocListItem = (props: { item: DocItem; }) => {
   const { item } = props;
