@@ -80,14 +80,14 @@ export default function Layout(props: {
   const [, currentPath] = router.pathname.split("/");
 
   return (<><div
-      className="flex min-h-screen flex-row justify-stretch"
+      className="flex min-h-screen max-h-screen flex-row justify-stretch"
       style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
     <main
-      className="flex min-h-screen flex-row items-stretch grow shrink p-24 gap-4"
+      className="flex min-h-screen max-h-screen flex-row items-stretch grow shrink px-24 gap-4"
       style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
-      <div className='flex flex-col gap-4 grow-0 shrink-0'>
+      <div className='flex flex-col gap-4 grow-0 shrink-0 py-24'>
         <div className='flex flex-col gap-1 grow shrink'>
           <ColumnHeader title="#" />
           { Items.map((item, i) =>
@@ -102,17 +102,14 @@ export default function Layout(props: {
         </div>
       </div>
 
-      <div className='flex flex-col gap-1'>
-        {
-          props.children ? (<>
-            <div className='flex flex-col gap-1'>
-              { currentPath ? <ColumnHeader title={currentPath} /> : null }
-              {props.children}
-            </div>
-          </>) : null
-        }
-
-      </div>
+      {
+        props.children ? (<>
+          <div className='flex flex-col gap-1 max-h-full overflow-scroll pt-24'>
+            { currentPath ? <ColumnHeader title={currentPath} /> : null }
+            {props.children}
+          </div>
+        </>) : null
+      }
     </main>
   </div>
   </>)
