@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
+import ShadowImageBox from "./ShadowImageBox";
 
 // [Item]
 // 以下の性質を持つコンポーネント:
@@ -111,6 +112,7 @@ export default function Layout(props: {
         </>) : null
       }
     </main>
+    <ShadowImageBox />
   </div>
   </>)
 }
