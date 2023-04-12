@@ -10,6 +10,37 @@ export type WorkItem = {
   body?: string;
 };
 
+
+export const ItemsPrivate: WorkItem[] = [
+  {
+    title: "life",
+    repo: { url: "https://github.com/corvvs/life", icon: Fa.FaGithub },
+    summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
+    body: [
+      "「2000年代初頭の個人サイト」をコンセプトにお送りしています。"
+    ].join("\n"),
+  },
+  {
+    title: "42HoursTuningTheBackend",
+    repo: { url: "https://github.com/corvvs/42HoursTuningTheBackend", icon: Fa.FaGithub },
+    summary: "42時間耐久パフォーマンスチューニングコンテスト", techs: [ "nginx", "MySQL", "TypeScript" ],
+    body: [
+      "3人チームによる対抗戦。",
+      "42時間の競技時間内にWebアプリケーションの性能を可能な限り向上させる, いわゆる ISUCON 形式のコンテスト。",
+      "2 / 34 位だったが, 1位のチームからは2倍近い点差がついた。",
+    ].join("\n"),
+  },
+  {
+    title: "graint",
+    repo: { url: "https://github.com/corvvs/graint", icon: Fa.FaGithub },
+    summary: "初歩的な重力三体問題のシミュレータ", techs: [ "C", "gnuplot", ],
+    body: [
+      "古典力学の重力三体問題を, 微分方程式を数値的に解くことでシミュレートするプログラム。",
+      "gnuplot でアニメーションを作るスキルが身に付いた。無駄に。",
+    ].join("\n"),
+  },
+];
+
 export const ItemsFT: WorkItem[] = [
   {
     title: "Inception of Things",
@@ -23,9 +54,9 @@ export const ItemsFT: WorkItem[] = [
     repo: { url: "https://github.com/corvvs/allocyou", icon: Fa.FaGithub },
     summary: "malloc/free/realloc ...などの実装", techs: ["C"], wip: true,
     body: [
-      "みんな大好き malloc を自作する。ただしbrkは使わない。",
-      "「assertは(実装によっては)内部でmalloc/freeを呼ぶ」ことが、マルチスレッド対応時にとんでもない問題を巻き起こすことに。",
-      "fastbinをやらなかったのがちょっと心残りだが、 vim と bash が動くのでよしとする。",
+      "みんな大好き malloc を自作する。ただしbrkを使ってはいけない。",
+      "各種条件を assert で厳重にチェックしていたが、これがマルチスレッド対応においてとんでもない嵐を巻き起こすことになろうとは・・・",
+      "fastbins をやらなかったのがちょっと心残りだが、 vim と bash を動かせたのでよしとする。",
     ].join("\n"),
   },
   {
@@ -34,8 +65,9 @@ export const ItemsFT: WorkItem[] = [
     summary: "lsコマンドの機能限定クローン", techs: ["C"], wip: true,
     body: [
       "無意味に実行されるコマンド第1位こと ls を自作する。",
-      "macOS / Linux 両対応。無駄に。",
-      "macOS の script コマンドにバグがあることが発覚。",
+      "macOS / Linux 両対応。といってもレイアウトが違うくらいで本質的には同じ。",
+      "製作過程で実際のコードをチラ読みしたが, macOS と Linux(coreutils) とで中身が結構違う。",
+      "テスト過程で macOS の script コマンドにバグがあることが発覚。",
     ].join("\n"),
   },
 
@@ -45,8 +77,9 @@ export const ItemsFT: WorkItem[] = [
     summary: "ロジスティック回帰による多クラス分類", techs: [ "Data Science", "TypeScript", "SVG" ],
     body: [
       "2人チーム。",
+      "ML / 統計系のライブラリは使用禁止(math系はOK)。",
       "へそ曲がりなので TypeScript で書いた。",
-      "画像出力もほぼ(lodash と sprintf 以外)スクラッチで書けたのでそこそこ満足。",
+      "画像出力まで含めて外部ライブラリにほとんど依存しない(lodash と sprintf 以外)で書けたのでそこそこ満足。",
     ].join("\n"),
   },
   {
@@ -57,7 +90,7 @@ export const ItemsFT: WorkItem[] = [
       "2人チーム。",
       "「シミュレータ」と「チューリングマシン定義作成」のうち「シミュレータ」を担当。",
       "OCaml のエコシステムに大苦戦。",
-      "コード自体は割とすんなり書けた。"
+      "コード自体は割とすんなり書けたのだが、「与えられたマシン定義の時間計算量を見積もる」という追加課題の意味が今もってわからない。なにこれ？"
     ].join("\n"),
   },
   {
@@ -65,9 +98,9 @@ export const ItemsFT: WorkItem[] = [
     repo: { url: "https://github.com/corvvs/asm", icon: Fa.FaGithub },
     summary: "x86_64アセンブラによる簡単(?)な関数の実装", techs: ["Asm", "LLDB"],
     body: [
-      "アセンブラなんもわからん状態から始めたため、前提知識の収集に非常に手間取る。",
-      "詳しい人に聞きまくってなんとか。",
-      "その後は C で書いたコードを逆アセンブルしてじっと睨む日々。"
+      "アセンブラなんもわからん状態から始めたため、詳しい人に聞きまくって前提知識を掻き集める。",
+      "アセンブラのコードを見ると、ループと末尾再帰がほとんど同じであることが実感できる。",
+      "コンパイラがめちゃくちゃに最適化した後のコードを読解する遊びが自分の中で流行った。",
     ].join("\n"),
   },
   {
@@ -76,8 +109,9 @@ export const ItemsFT: WorkItem[] = [
     summary: "変則的なクワインの製作", techs: ["C", "Asm", "Ruby"],
     body: [
       "いわゆるクワイン(quine)...に余計な条件がついたもの3種を, C と Asm と任意の言語で作る。",
-      "クワイン自体は勝ちパターンを見つければほぼ機械的に書ける。",
+      "クワイン自体は勝ちパターンが見つかればほぼ機械的に書ける。",
       "「面白い」クワインとなると話は変わってくるが・・・",
+      "ちなみにこの課題はマルウェア系課題への前振りという位置付けであり、クワインに課される条件もそれを念頭に置いたものとなっている(たとえば自己増殖性)。",
     ].join("\n"),
   },
   {
@@ -86,18 +120,22 @@ export const ItemsFT: WorkItem[] = [
     summary: "DB/バックエンドを伴うPvPゲームSPAの製作", techs: ["TypeScript", "React", "TailwindCSS", "NestJS", "PostgreSQL", "Socket.IO", "Docker"],
     body: [
       "4人チーム。Common Core 最終課題。",
-      "人間心理の捉えどころのなさに悩まされる。",
-      "「マネジメントって面白いかも」と思えるようになったのは収穫。",
+      "webserv に続けて人間心理の捉えどころのなさに悩まされたが、ペアプログラミングの威力を実感できたのは収穫。",
+      "これをきっかけに「マネジメントって面白いかも」と思うようになった。",
+      "初めて React に触れたが, Vue に比べるとその「きっちり」さが自分には合っていると思う。",
     ].join("\n"),
   },
   {
     title: "webserv",
     repo: { url: "https://github.com/corvvs/webserv", icon: Fa.FaGithub },
-    summary: "イベント駆動HTTPサーバの実装", techs: ["C++", "Docker"],
+    summary: "イベント駆動HTTP/1.1サーバの実装", techs: ["C++", "Docker"],
     body: [
       "3人チーム。",
-      "自分の最大の弱点が露呈した課題。",
-      "「CGIの実行以外の目的で fork してはならない」「IO多重化必須」などなどの制約があるため、アーキテクチャはかなり限定される。",
+      "最大の弱点「チームプレイの経験に乏しい」が露呈した課題。",
+      "「CGIの実行以外の目的で fork してはならない」「IO多重化必須」「イベントループはプログラム全体で1つだけ」などなどの制約があるため、必然的にアーキテクチャは絞られる。",
+      "結局1スレッド - 1プロセスに落ち着いた。",
+      "イベント監視系として select / poll / kqueue を任意に差し替えられるようにしてみた。",
+      "クラス設計にかなりの時間をかけたが、その甲斐はあったと思う。",
     ].join("\n"),
   },
   {
@@ -106,8 +144,8 @@ export const ItemsFT: WorkItem[] = [
     summary: "STLコンテナの再実装", techs: ["C++"],
     body: [
       "vector, map, set, pair, stack を再実装する。",
-      "苦行、もしくは修行、あるいは荒行。",
-      "42特有のルールのせいで auto が使えないことにうんざりさせられる。",
+      "テンプレートと真剣に向き合う課題。その over powered ぶりを思い知った。",
+      "42特有のルールのせいで auto が使えないため、非常に冗長なコーディングを強いられる。",
       "この課題に限った事ではないが、コミットコメントがひどい・・・"
     ].join("\n"),
   },
@@ -118,7 +156,7 @@ export const ItemsFT: WorkItem[] = [
     body: [
       "2人チーム。GPUは使わない。",
       "FdF と同じく数式まみれになる課題だが, 同じ3Dとはいえ似ているようで実はそれほど似ていない。",
-      "レンダリングのマルチスレッド化は、実装コストの割に効果が劇的で良かった。",
+      "線形な FdF に対しこちらは非線形だからだろうか。",
     ].join("\n"),
   },
   {
@@ -127,7 +165,8 @@ export const ItemsFT: WorkItem[] = [
     summary: "bash-likeなシェルの実装", techs: ["C"],
     body: [
       "2人チームで bash を再現する。",
-      "明確な比較対象があるとついつい作り込んでしまう。",
+      "まず bash の挙動を時間をかけて徹底的に観察した上で, それらの挙動を再現するような「なるべく自然、かつ大きなルール」を構築するアプローチを取った。",
+      "100%とはいかないが、まずまず上手くいったと思う。",
     ].join("\n"),
   },
   {
@@ -136,24 +175,11 @@ export const ItemsFT: WorkItem[] = [
     summary: "ワイヤーフレームのレンダリング", techs: ["C"],
     body: [
       "数式まみれになる課題。",
-      "3Dをきちんと触るのは初めての経験で、非常に楽しかった。"
+      "ただし平行投影なのでパースがなく、その分考えやすい。",
+      "3Dをきちんと触るのは初めての経験で、非常に楽しかった。",
     ].join("\n"),
   },
 ];
-
-export const ItemsPrivate: WorkItem[] = [
-  {
-    title: "life",
-    repo: { url: "https://github.com/corvvs/life", icon: Fa.FaGithub },
-    summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
-  },
-  {
-    title: "graint",
-    repo: { url: "https://github.com/corvvs/graint", icon: Fa.FaGithub },
-    summary: "初歩的な重力三体問題のシミュレータ", techs: [ "C" ],
-  },
-]
-
 
 export type DocItem = {
   title: string;

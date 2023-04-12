@@ -28,25 +28,25 @@ const WorksListItem = (item: WorkItem) => {
   </li>
 };
 
-function WorksContent() {
+const WorksList = (props: {
+  title: string;
+  items: WorkItem[];
+}) => {
+  return <div className="flex flex-col gap-4">
+    <h3 className='bio-sub-header'>{ props.title }</h3>
+    <ul className="flex flex-row items-start flex-wrap gap-4">
+      { props.items.map((item) => <WorksListItem key={item.title} {...item} />) }
+    </ul>
+  </div>
+};
+
+const WorksContent = () => {
   return (
     <div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
 
-      <div className="flex flex-col gap-4">
-        <h3 className='bio-sub-header'>個人的なもの</h3>
-        <ul className="flex flex-row flex-wrap gap-4">
-          { ItemsPrivate.map((item) => <WorksListItem key={item.title} {...item} />) }
-        </ul>
-      </div>
+      <WorksList title="個人的なもの" items={ItemsPrivate} />
 
-
-      <div className="flex flex-col gap-4">
-        <h3 className='bio-sub-header'>42Tokyo Exercises</h3>
-        <ul className="flex flex-row flex-wrap gap-4">
-          { ItemsFT.map((item) => <WorksListItem key={item.title} {...item} />) }
-        </ul>
-        ほか色々...
-      </div>
+      <WorksList title="42Tokyo Exercises" items={ItemsFT} />
 
     </div>
   );
