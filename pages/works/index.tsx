@@ -1,14 +1,9 @@
+import { ExLink, ExLinkButton } from "@/components/ExLinkButton";
 import Layout from "@/components/Layout";
-import { IconType } from "react-icons";
 import * as Fa from "react-icons/fa";
 
 
-type ExLink = {
-  url: string;
-  icon: IconType;
-}
-
-type WorkItemFT = {
+type WorkItem = {
   title: string;
   repo?: string | ExLink;
   techs?: string[];
@@ -16,14 +11,6 @@ type WorkItemFT = {
   wip?: boolean;
   body?: string;
 };
-
-const ExLinkButton = (props: {
-  item: ExLink | string;
-}) => {
-  const Icon = typeof props.item === "string" ? Fa.FaExternalLinkAlt : props.item.icon;
-  const url = typeof props.item === "string" ? props.item : props.item.url;
-  return <a href={url}><Icon/></a>
-}
 
 const TechsList = (props: {
   techs: string[];
@@ -33,7 +20,7 @@ const TechsList = (props: {
   </ul>
 }
 
-const WorkItem = (item: WorkItemFT) => {
+const WorksListItem = (item: WorkItem) => {
   return <li className="flex flex-col border-[1px] p-2">
     <div className="flex flex-row items-center gap-1">
       <h3 className="text-xl">
@@ -47,7 +34,7 @@ const WorkItem = (item: WorkItemFT) => {
   </li>
 };
 
-const Items: WorkItemFT[] = [
+const ItemsFT: WorkItem[] = [
   {
     title: "Inception of Things",
     summary: "オーケストレーション実習", techs: ["Vagrant", "Kubernetes"], wip: true,
@@ -80,7 +67,7 @@ const Items: WorkItemFT[] = [
   {
     title: "transcendence",
     repo: { url: "https://github.com/JUNNETWORKS/42-ft_transcendence", icon: Fa.FaGithub },
-    summary: "DB/バックエンドを伴うPvPゲームSPAの製作", techs: ["TypeScript", "React", "NestJS", "PostgreSQL", "Docker"],
+    summary: "DB/バックエンドを伴うPvPゲームSPAの製作", techs: ["TypeScript", "React", "TailwindCSS", "NestJS", "PostgreSQL", "Docker"],
   },
   {
     title: "webserv",
@@ -109,14 +96,35 @@ const Items: WorkItemFT[] = [
   },
 ];
 
-export function WorksContent() {
+const ItemsPrivate: WorkItem[] = [
+  {
+    title: "life",
+    repo: { url: "https://github.com/corvvs/life", icon: Fa.FaGithub },
+    summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
+  },
+  {
+    title: "graint",
+    repo: { url: "https://github.com/corvvs/graint", icon: Fa.FaGithub },
+    summary: "初歩的な重力三体問題のシミュレータ", techs: [ "C" ],
+  },
+]
+
+function WorksContent() {
   return (
     <div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
 
       <div className="flex flex-col gap-4">
+        <h3 className='bio-sub-header'>個人的なもの</h3>
+        <ul className="flex flex-row flex-wrap gap-4">
+          { ItemsPrivate.map((item) => <WorksListItem key={item.title} {...item} />) }
+        </ul>
+      </div>
+
+
+      <div className="flex flex-col gap-4">
         <h3 className='bio-sub-header'>42Tokyo Excercises</h3>
         <ul className="flex flex-row flex-wrap gap-4">
-          { Items.map((item) => <WorkItem key={item.title} {...item} />) }
+          { ItemsFT.map((item) => <WorksListItem key={item.title} {...item} />) }
         </ul>
         ほか色々...
       </div>

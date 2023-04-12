@@ -21,6 +21,13 @@ type ItemParam = {
   path?: string;
 };
 
+const Items: ItemParam[] = [
+  { title: "作者の情報", path: "about_me", },
+  { title: "制作物", path: "works", },
+  { title: "文書", path: "docs", },
+  { title: ConfigButton, path: "config", },
+];
+
 const Outer = (props: Omit<ItemParam, "title"> & {
   active?: boolean;
   children: ReactNode;
@@ -72,11 +79,6 @@ export default function Layout(props: {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
 
-  const items: ItemParam[] = [
-    { title: "作者の情報", path: "about_me", },
-    { title: "制作物", path: "works", },
-    { title: ConfigButton, path: "config", },
-  ];
   return (<><div
       className="flex min-h-screen flex-row justify-stretch"
       style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
@@ -88,7 +90,7 @@ export default function Layout(props: {
       <div className='flex flex-row gap-4'>
         <div className='flex flex-col gap-1'>
           <ColumnHeader title="#" />
-          { items.map((item, i) =>
+          { Items.map((item, i) =>
             <GridBlock
               key={i}
               active={currentPath == item.path}
