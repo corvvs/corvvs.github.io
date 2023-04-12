@@ -12,16 +12,19 @@ const TechsList = (props: {
 }
 
 const WorksListItem = (item: WorkItem) => {
-  return <li className="flex flex-col border-[1px] p-2">
-    <div className="flex flex-row items-center gap-1">
-      <h3 className="text-xl">
-        { item.wip ? "(WIP)" : null }
-        { item.title }
-      </h3>
-      { item.repo ? <ExLinkButton item={item.repo} /> : null }
+  return <li className="flex flex-col border-[1px] p-2 max-w-sm gap-2">
+    <div className="flex flex-col">
+      <div className="flex flex-row items-center border-b-[1px] gap-1">
+        <h3 className="text-xl font-bold">
+          { item.wip ? "(WIP)" : null }
+          { item.title }
+        </h3>
+        { item.repo ? <ExLinkButton item={item.repo} /> : null }
+      </div>
+      <h4>{ item.summary }</h4>
     </div>
-    <h4>{ item.summary }</h4>
     { item.techs ? <TechsList techs={item.techs} /> : null }
+    { item.body ? <p className="whitespace-pre-line">{item.body}</p> : null }
   </li>
 };
 
@@ -38,7 +41,7 @@ function WorksContent() {
 
 
       <div className="flex flex-col gap-4">
-        <h3 className='bio-sub-header'>42Tokyo Excercises</h3>
+        <h3 className='bio-sub-header'>42Tokyo Exercises</h3>
         <ul className="flex flex-row flex-wrap gap-4">
           { ItemsFT.map((item) => <WorksListItem key={item.title} {...item} />) }
         </ul>
