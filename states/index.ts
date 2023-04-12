@@ -1,1 +1,1 @@
-export { siteConfigAtom, BackgroundImageNames } from './config'
+export { BackgroundImageNames } from './config'

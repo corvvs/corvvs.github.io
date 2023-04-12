@@ -1,5 +1,4 @@
 import { assetPrefix } from "@/constants/path";
-import { siteConfigAtom } from "@/states";
 import { useAtom } from "jotai";
 import { Credit } from "./Credit";
 import { ReactNode, useState } from "react";
@@ -8,6 +7,7 @@ import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
 import ShadowImageBox from "./ShadowImageBox";
+import { siteConfigAtom } from "@/states/config";
 
 // [Item]
 // 以下の性質を持つコンポーネント:

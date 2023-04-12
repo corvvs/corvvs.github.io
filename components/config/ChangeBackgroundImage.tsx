@@ -1,12 +1,16 @@
 import { assetPrefix } from '@/constants/path';
-import { BackgroundImageNames, siteConfigAtom } from '@/states';
+import { BackgroundImageNames } from '@/states';
+import { siteConfigAtom } from '@/states/config';
 import { useAtom } from 'jotai';
 
+const SelectedImageButton = () => {
+  return <div className='flex flex-row items-center justify-center w-10 h-10 border-2' />
+}
 
 const NoneImageButton = () => {
   const [backgroundImage, setBackgroundImage] = useAtom(siteConfigAtom.backgroundImage);
   if (!backgroundImage) {
-    return <div className='flex flex-row items-center justify-center w-10 h-10 border-2' />
+    return <SelectedImageButton />
   } else {
     return <div
       className='flex flex-row items-center justify-center w-10 h-10 border-2 cursor-pointer'
@@ -21,8 +25,9 @@ const SelectImageButton = (props: { imageIndex: number; }) => {
   const name = BackgroundImageNames[props.imageIndex];
   const thumbnailName = `thumb_${name}`;
   const [backgroundImage, setBackgroundImage] = useAtom(siteConfigAtom.backgroundImage);
+
   if (backgroundImage === name) {
-    return <div className='flex flex-row items-center justify-center w-10 h-10 border-2' />
+    return <SelectedImageButton />
   } else {
     return <div
       key={name}
