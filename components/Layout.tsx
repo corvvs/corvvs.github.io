@@ -84,11 +84,11 @@ export default function Layout(props: {
       style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
     <main
-      className="flex min-h-screen flex-col items-start justify-between grow shrink p-24"
+      className="flex min-h-screen flex-row items-stretch grow shrink p-24 gap-4"
       style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
-      <div className='flex flex-row gap-4'>
-        <div className='flex flex-col gap-1'>
+      <div className='flex flex-col gap-4 grow-0 shrink-0'>
+        <div className='flex flex-col gap-1 grow shrink'>
           <ColumnHeader title="#" />
           { Items.map((item, i) =>
             <GridBlock
@@ -97,7 +97,12 @@ export default function Layout(props: {
               title={item.title} path={item.path}
             />) }
         </div>
+        <div className='grow-0 shrink-0'>
+          <Credit />
+        </div>
+      </div>
 
+      <div className='flex flex-col gap-1'>
         {
           props.children ? (<>
             <div className='flex flex-col gap-1'>
@@ -107,9 +112,6 @@ export default function Layout(props: {
           </>) : null
         }
 
-      </div>
-      <div className='flex flex-row gap-4'>
-        <Credit />
       </div>
     </main>
   </div>
