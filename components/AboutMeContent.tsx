@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import * as Fa from 'react-icons/fa';
+import * as Tb from 'react-icons/tb';
 import { InlineIcon } from './InlineIcon';
 import { assetPrefix } from '@/constants/path';
 
@@ -86,6 +87,7 @@ export default function AboutMe() {
       <SocialItem service='GitHub' url="https://github.com/corvvs" icon={<Fa.FaGithub />} id="@corvvs"/>
       <SocialItem service='Twitter' url="https://twitter.com/corvvs" icon={<Fa.FaTwitter />} id="@corvvs"/>
       <SocialItem service='Qiita' url="https://qiita.com/corvvs" id="@corvvs"/>
+      <SocialItem service='GooglePhoto' url="https://photos.app.goo.gl/EY7kQg4VsbUzzhbX8" icon={<Tb.TbBrandGooglePhotos />} id="album"/>
       </ul>
     </div>
   </div>)

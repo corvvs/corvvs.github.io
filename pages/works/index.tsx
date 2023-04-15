@@ -34,7 +34,7 @@ const WorksList = (props: {
 }) => {
   return <div className="flex flex-col gap-4">
     <h3 className='bio-sub-header'>{ props.title }</h3>
-    <ul className="flex flex-row items-start flex-wrap gap-4">
+    <ul className="flex flex-row items-start flex-wrap gap-8">
       { props.items.map((item) => <WorksListItem key={item.title} {...item} />) }
     </ul>
   </div>

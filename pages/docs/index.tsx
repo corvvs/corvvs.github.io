@@ -9,7 +9,7 @@ const DocListItem = (props: { item: DocItem; }) => {
   </li>
 }
 
-export function DocsContent() {
+const DocsContent = () => {
   return (
     <div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
 
