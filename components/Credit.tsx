@@ -1,4 +1,4 @@
-import * as Fa from 'react-icons/fa';
+import { FaGithub, FaTwitter } from 'react-icons/fa';
 import { InlineIcon } from './InlineIcon';
 
 export const Credit = () => {
@@ -6,10 +6,10 @@ export const Credit = () => {
     <p>2023 Kawada, Yosuke</p>
     <p>
       <a href="https://github.com/corvvs">
-        <InlineIcon i={<Fa.FaGithub />}/>
+        <InlineIcon i={<FaGithub />}/>
       </a>
       <a href="https://twitter.com/corvvs">
-        <InlineIcon i={<Fa.FaTwitter />}/>
+        <InlineIcon i={<FaTwitter />}/>
       </a>
     </p>
   </>)

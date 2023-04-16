@@ -3,7 +3,7 @@ import { Listbox } from "@headlessui/react";
 import { atom, useAtom } from "jotai";
 import _ from "lodash";
 import { InlineIcon } from "../InlineIcon";
-import * as Si from 'react-icons/si';
+import { SiMdnwebdocs } from 'react-icons/si';
 
 const AbsoluteLengthDimensions = ["cm", "mm", "Q", "in", "pc", "pt", "px"] as const;
 const RelativeLengthDimensions = ["em", "ex", "ch", "rem", "lh", "rlh", "vw", "vh", "vmin", "vmax", "vb", "vi"] as const;
@@ -88,7 +88,7 @@ export const BackdropFilterTuner = () => {
       </p>
 
       <a href="https://developer.mozilla.org/ja/docs/Web/CSS/filter">
-        <InlineIcon i={<Si.SiMdnwebdocs />} />
+        <InlineIcon i={<SiMdnwebdocs />} />
       </a>
 
       <LifeButton

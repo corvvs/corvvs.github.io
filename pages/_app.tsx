@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
+import ShadowImageBox from '@/components/ShadowImageBox'
 
 export default function App({ Component, pageProps }: AppProps) {
   return <>
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
     </Head>  
+    <ShadowImageBox />
     <Component {...pageProps} />
   </>
 }

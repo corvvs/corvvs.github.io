@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import * as Fa from 'react-icons/fa';
-import * as Tb from 'react-icons/tb';
+import { TbBrandGooglePhotos } from 'react-icons/tb';
 import { InlineIcon } from './InlineIcon';
+import { FaGithub, FaTwitter } from 'react-icons/fa';
 
 const SocialItem = (props: {
   service: string;
@@ -83,10 +83,10 @@ export default function AboutMe() {
     <div>
       <h3 className='bio-sub-header'>Social</h3>
       <ul>
-      <SocialItem service='GitHub' url="https://github.com/corvvs" icon={<Fa.FaGithub />} id="@corvvs"/>
-      <SocialItem service='Twitter' url="https://twitter.com/corvvs" icon={<Fa.FaTwitter />} id="@corvvs"/>
+      <SocialItem service='GitHub' url="https://github.com/corvvs" icon={<FaGithub />} id="@corvvs"/>
+      <SocialItem service='Twitter' url="https://twitter.com/corvvs" icon={<FaTwitter />} id="@corvvs"/>
       <SocialItem service='Qiita' url="https://qiita.com/corvvs" id="@corvvs"/>
-      <SocialItem service='GooglePhoto' url="https://photos.app.goo.gl/EY7kQg4VsbUzzhbX8" icon={<Tb.TbBrandGooglePhotos />} id="album"/>
+      <SocialItem service='GooglePhoto' url="https://photos.app.goo.gl/EY7kQg4VsbUzzhbX8" icon={<TbBrandGooglePhotos />} id="album"/>
       </ul>
     </div>
   </div>)

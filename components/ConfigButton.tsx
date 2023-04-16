@@ -1,7 +1,5 @@
-import { useRouter } from "next/router";
-import * as Bs from 'react-icons/bs';
+import { BsEasel } from 'react-icons/bs';
 import { InlineIcon } from "./InlineIcon";
-import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { ChangeBackgroundImage } from "./config/ChangeBackgroundImage";
 import { Modal } from "./Modal";
@@ -35,7 +33,7 @@ export function ConfigButton(props: { active: boolean, path?: string }) {
         className={className}
         onClick={() => setIsOpen(true)}
       >
-        <InlineIcon i={<Bs.BsEasel />}/>
+        <InlineIcon i={<BsEasel />}/>
       </button>
     </div>
     <Modal closeModal={closeModal} isOpen={isOpen}>

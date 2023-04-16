@@ -1,18 +1,16 @@
 import { useAtom } from "jotai";
 import { Credit } from "./Credit";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
-import ShadowImageBox from "./ShadowImageBox";
 import { siteConfigAtom } from "@/states/config";
 
 // [Item]
 // 以下の性質を持つコンポーネント:
 // - クリックした時の遷移先として `path: string` を持つ.
 // - パラメータ `active: boolean` を取る or 表示文字列として`title: string` を持つ.
-
 
 type ItemComponent = (props: { active: boolean; path?: string; }) => JSX.Element;
 
@@ -112,7 +110,6 @@ export default function Layout(props: {
         </>) : null
       }
     </main>
-    <ShadowImageBox />
   </div>
   </>)
 }

@@ -1,5 +1,5 @@
 import { ExLink } from "@/components/ExLinkButton";
-import * as Fa from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 export type WorkItem = {
   title: string;
@@ -14,15 +14,16 @@ export type WorkItem = {
 export const ItemsPrivate: WorkItem[] = [
   {
     title: "life",
-    repo: { url: "https://github.com/corvvs/corvvs.github.io", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/corvvs.github.io", icon: FaGithub },
     summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
     body: [
       "「2000年代初頭の個人サイト」をコンセプトにお送りしています。"
     ].join("\n"),
   },
+
   {
     title: "42HoursTuningTheBackend",
-    repo: { url: "https://github.com/corvvs/42HoursTuningTheBackend", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/42HoursTuningTheBackend", icon: FaGithub },
     summary: "42時間耐久パフォーマンスチューニングコンテスト", techs: [ "nginx", "MySQL", "TypeScript" ],
     body: [
       "3人チームによる対抗戦。",
@@ -30,9 +31,10 @@ export const ItemsPrivate: WorkItem[] = [
       "2 / 34 位だったが, 1位のチームからは2倍近く点差がついた。",
     ].join("\n"),
   },
+
   {
     title: "graint",
-    repo: { url: "https://github.com/corvvs/graint", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/graint", icon: FaGithub },
     summary: "初歩的な重力三体問題のシミュレータ", techs: [ "C", "gnuplot", ],
     body: [
       "古典力学の重力三体問題を, 微分方程式を数値的に解くことでシミュレートするプログラム。",
@@ -49,9 +51,10 @@ export const ItemsFT: WorkItem[] = [
       "2人チーム。",
     ].join("\n"),
   },
+
   {
     title: "malloc",
-    repo: { url: "https://github.com/corvvs/allocyou", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/allocyou", icon: FaGithub },
     summary: "malloc/free/realloc ...などの実装", techs: ["C"], wip: true,
     body: [
       "みんな大好き malloc を自作する。ただしbrkを使ってはいけない。",
@@ -59,10 +62,11 @@ export const ItemsFT: WorkItem[] = [
       "fastbins をやらなかったのがちょっと心残りだが、 vim と bash を動かせたのでよしとする。",
     ].join("\n"),
   },
+
   {
     title: "ls",
-    repo: { url: "https://github.com/corvvs/ls", icon: Fa.FaGithub },
-    summary: "lsコマンドの機能限定クローン", techs: ["C"], wip: true,
+    repo: { url: "https://github.com/corvvs/ls", icon: FaGithub },
+    summary: "lsコマンドの機能限定クローン", techs: ["C"],
     body: [
       "無意味に実行されるコマンド第1位こと ls を自作する。",
       "macOS / Linux 両対応。といってもレイアウトが違うくらいで本質的には同じ。",
@@ -73,7 +77,7 @@ export const ItemsFT: WorkItem[] = [
 
   {
     title: "DSLR",
-    repo: { url: "https://github.com/corvvs/kedavra", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/kedavra", icon: FaGithub },
     summary: "ロジスティック回帰による多クラス分類", techs: [ "Data Science", "TypeScript", "SVG" ],
     body: [
       "2人チーム。",
@@ -82,9 +86,10 @@ export const ItemsFT: WorkItem[] = [
       "画像出力まで含めて外部ライブラリにほとんど依存しない(lodash と sprintf 以外)で書けたのでそこそこ満足。",
     ].join("\n"),
   },
+
   {
     title: "turing",
-    repo: { url: "https://github.com/corvvs/turrrr", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/turrrr", icon: FaGithub },
     summary: "チューリングマシンシミュレータの製作", techs: ["OCaml"],
     body: [
       "2人チーム。",
@@ -93,9 +98,10 @@ export const ItemsFT: WorkItem[] = [
       "コード自体は割とすんなり書けたのだが、「与えられたマシン定義の時間計算量を見積もる」という追加課題の意味が今もってわからない。なにこれ？"
     ].join("\n"),
   },
+
   {
     title: "libasm",
-    repo: { url: "https://github.com/corvvs/asm", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/asm", icon: FaGithub },
     summary: "x86_64アセンブラによる簡単(?)な関数の実装", techs: ["Asm", "LLDB"],
     body: [
       "アセンブラなんもわからん状態から始めたため、詳しい人に聞きまくって前提知識を掻き集める。",
@@ -103,9 +109,10 @@ export const ItemsFT: WorkItem[] = [
       "コンパイラがめちゃくちゃに最適化した後のコードを読解する遊びが自分の中で流行った。",
     ].join("\n"),
   },
+
   {
     title: "dr_quine",
-    repo: { url: "https://github.com/corvvs/quine", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/quine", icon: FaGithub },
     summary: "変則的なクワインの製作", techs: ["C", "Asm", "Ruby"],
     body: [
       "いわゆるクワイン(quine)...に余計な条件がついたもの3種を, C と Asm と任意の言語で作る。",
@@ -114,9 +121,10 @@ export const ItemsFT: WorkItem[] = [
       "ちなみにこの課題はマルウェア系課題への前振りという位置付けであり、クワインに課される条件もそれを念頭に置いたものとなっている(たとえば自己増殖性)。",
     ].join("\n"),
   },
+
   {
     title: "transcendence",
-    repo: { url: "https://github.com/JUNNETWORKS/42-ft_transcendence", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/JUNNETWORKS/42-ft_transcendence", icon: FaGithub },
     summary: "DB/バックエンドを伴うPvPゲームSPAの製作", techs: ["TypeScript", "React", "TailwindCSS", "NestJS", "PostgreSQL", "Socket.IO", "Docker"],
     body: [
       "4人チーム。Common Core 最終課題。",
@@ -127,7 +135,7 @@ export const ItemsFT: WorkItem[] = [
   },
   {
     title: "webserv",
-    repo: { url: "https://github.com/corvvs/webserv", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/webserv", icon: FaGithub },
     summary: "イベント駆動HTTP/1.1サーバの実装", techs: ["C++", "Docker"],
     body: [
       "3人チーム。",
@@ -138,9 +146,10 @@ export const ItemsFT: WorkItem[] = [
       "クラス設計にかなりの時間をかけたが、その甲斐はあったと思う。",
     ].join("\n"),
   },
+
   {
     title: "containers",
-    repo: { url: "https://github.com/corvvs/containers", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/containers", icon: FaGithub },
     summary: "STLコンテナの再実装", techs: ["C++"],
     body: [
       "vector, map, set, pair, stack を再実装する。",
@@ -149,9 +158,10 @@ export const ItemsFT: WorkItem[] = [
       "この課題に限った事ではないが、コミットコメントがひどい・・・"
     ].join("\n"),
   },
+
   {
     title: "miniRT",
-    repo: { url: "https://github.com/ryo-manba/miniRT", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/ryo-manba/miniRT", icon: FaGithub },
     summary: "初歩的なレイトレーシングエンジンの実装", techs: ["C"],
     body: [
       "2人チーム。GPUは使わない。",
@@ -159,9 +169,10 @@ export const ItemsFT: WorkItem[] = [
       "線形な FdF に対しこちらは非線形だからだろうか。",
     ].join("\n"),
   },
+
   {
     title: "minishell",
-    repo: { url: "https://github.com/ryo-manba/minishell", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/ryo-manba/minishell", icon: FaGithub },
     summary: "bash-likeなシェルの実装", techs: ["C"],
     body: [
       "2人チームで bash を再現する。",
@@ -169,14 +180,24 @@ export const ItemsFT: WorkItem[] = [
       "100%とはいかないが、まずまず上手くいったと思う。",
     ].join("\n"),
   },
+
   {
     title: "FdF",
-    repo: { url: "https://github.com/corvvs/fildefer", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs/fildefer", icon: FaGithub },
     summary: "ワイヤーフレームのレンダリング", techs: ["C"],
     body: [
       "数式まみれになる課題。",
       "ただし平行投影なのでパースがなく、その分考えやすい。",
       "3Dをきちんと触るのは初めての経験で、非常に楽しかった。",
+    ].join("\n"),
+  },
+
+  {
+    title: "printf",
+    summary: "printfの再実装", techs: ["C"],
+    body: [
+      "対応しているフォーマット指定子はcsdiuxXpo%efg.",
+      "efgとフラグの一見不規則な(ように見える)相互作用に翻弄される10日間だった。"
     ].join("\n"),
   },
 ];
