@@ -14,7 +14,7 @@ export type WorkItem = {
 export const ItemsPrivate: WorkItem[] = [
   {
     title: "life",
-    repo: { url: "https://github.com/corvvs/life", icon: Fa.FaGithub },
+    repo: { url: "https://github.com/corvvs", icon: Fa.FaGithub },
     summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
     body: [
       "「2000年代初頭の個人サイト」をコンセプトにお送りしています。"

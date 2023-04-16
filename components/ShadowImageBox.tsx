@@ -1,4 +1,3 @@
-import { assetPrefix } from "@/constants/path";
 import { BackgroundImageNames } from "@/states";
 import Image from "next/image";
 
@@ -8,7 +7,7 @@ export default function ShadowImageBox() {
       BackgroundImageNames.map(name => <Image
         key={name}
         alt={name}
-        src={`${assetPrefix}/bg/lofi_${name}`}
+        src={`/bg/lofi_${name}`}
         width={1} height={1}
       />)
     }

@@ -1,4 +1,3 @@
-import { assetPrefix } from '@/constants/path';
 import { BackgroundImageNames } from '@/states';
 import { siteConfigAtom } from '@/states/config';
 import { useAtom } from 'jotai';
@@ -32,7 +31,7 @@ const SelectImageButton = (props: { imageIndex: number; }) => {
     return <div
       key={name}
       className='flex flex-row items-center justify-center w-10 h-10 border-2 cursor-pointer'
-      style={{ backgroundImage: `url(${assetPrefix}/bg/${thumbnailName})`, backgroundSize: "cover" }}
+      style={{ backgroundImage: `url(/bg/${thumbnailName})`, backgroundSize: "cover" }}
       onClick={() => setBackgroundImage(name)}
     >
       <p className='text-xl'>{ props.imageIndex + 1 }</p>

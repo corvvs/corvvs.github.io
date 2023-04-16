@@ -1,4 +1,3 @@
-import { assetPrefix } from "@/constants/path";
 import { useAtom } from "jotai";
 import { Credit } from "./Credit";
 import { ReactNode, useState } from "react";
@@ -83,11 +82,11 @@ export default function Layout(props: {
 
   return (<><div
       className="flex min-h-screen max-h-screen flex-row justify-stretch"
-      style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
+      style={{ backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
     <main
       className="flex min-h-screen max-h-screen flex-row items-stretch grow shrink px-24 gap-4"
-      style={{ backgroundImage: backgroundImage ? `url(${assetPrefix}/bg/${backgroundImage})` : undefined, backgroundSize: "cover" }}
+      style={{ backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined, backgroundSize: "cover" }}
     >
       <div className='flex flex-col gap-4 grow-0 shrink-0 py-24'>
         <div className='flex flex-col gap-1 grow shrink'>

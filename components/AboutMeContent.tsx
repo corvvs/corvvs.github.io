@@ -2,7 +2,6 @@ import Image from 'next/image'
 import * as Fa from 'react-icons/fa';
 import * as Tb from 'react-icons/tb';
 import { InlineIcon } from './InlineIcon';
-import { assetPrefix } from '@/constants/path';
 
 const SocialItem = (props: {
   service: string;
@@ -28,7 +27,7 @@ export default function AboutMe() {
       >
         <Image
           alt="mr.big"
-          src={`${assetPrefix}/mr.big.png`}
+          src={`/mr.big.png`}
           fill
         />
       </div>
