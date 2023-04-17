@@ -55,10 +55,13 @@ export const ItemsFT: WorkItem[] = [
   {
     title: "malloc",
     repo: { url: "https://github.com/corvvs/allocyou", icon: FaGithub },
-    summary: "malloc/free/realloc ...などの実装", techs: ["C"], wip: true,
+    summary: "メモリアロケータ(malloc/free/realloc ...など)の実装", techs: ["C"], wip: true,
     body: [
-      "みんな大好き malloc を自作する。ただしbrkを使ってはいけない。",
-      "各種条件を assert で厳重にチェックしていたが、これがマルチスレッド対応においてとんでもない嵐を巻き起こすことになろうとは・・・",
+      "みんな大好き malloc とそのフレンズを自作する。",
+      "malloc のおおまかなコンセプトは「システムからユーザ空間に大きなメモリ領域を確保しておき, それをユーザからのリクエストに応じて細切れにして渡す」。",
+      "システムからのメモリ確保にはシステムコール brk または mmap が使われるが, 課題上 mmap のみ許可されている。",
+      "単純に作るだけならリンクリストを慎重に操作するだけだが, これをスレッドセーフにしようと思うと考えることが一気に増える。",
+      "各種条件を assert で厳重にチェックしていたが、これがとんでもない嵐を巻き起こすことになった・・・",
       "fastbins をやらなかったのがちょっと心残りだが、 vim と bash を動かせたのでよしとする。",
     ].join("\n"),
   },
@@ -81,6 +84,8 @@ export const ItemsFT: WorkItem[] = [
     summary: "ロジスティック回帰による多クラス分類", techs: [ "Data Science", "TypeScript", "SVG" ],
     body: [
       "2人チーム。",
+      "ホグワーツの生徒1600人の成績データが科目別に与えられるので、成績から所属寮を推定するプログラムを作る。",
+      "要するに組分け帽子。",
       "ML / 統計系のライブラリは使用禁止(math系はOK)。",
       "へそ曲がりなので TypeScript で書いた。",
       "画像出力まで含めて外部ライブラリにほとんど依存しない(lodash と sprintf 以外)で書けたのでそこそこ満足。",
@@ -144,6 +149,16 @@ export const ItemsFT: WorkItem[] = [
       "結局1スレッド - 1プロセスに落ち着いた。",
       "イベント監視系として select / poll / kqueue を任意に差し替えられるようにしてみた。",
       "クラス設計にかなりの時間をかけたが、その甲斐はあったと思う。",
+    ].join("\n"),
+  },
+
+  {
+    title: "inception",
+    summary: "複数コンテナからなるWebアプリサービスの構築", techs: ["Docker", "nginx", "WordPress", "Adminer", "MySQL", "Redis"],
+    body: [
+      "WordPressを中核としたコンテナ群によるWebアプリサービスを, docker-compose を使って管理する.",
+      "外部に直接公開されているのはnginxのみで, 内部のサービスとの通信は nginx を通じて行う.",
+      "(ただし管理のためここのコンテナにはSSHでログインできる.)"
     ].join("\n"),
   },
 
