@@ -10,9 +10,7 @@ export const BackgroundImageNames = [
 
 export type BackgroundImageName = typeof BackgroundImageNames[number];
 
-const imageNameKey = 'life_bg_image_name';
-
-
+const imageNameKey = 'life_bg_image_name_v2';
 
 
 // [背景画像のatom]
