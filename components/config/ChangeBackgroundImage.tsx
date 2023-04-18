@@ -1,5 +1,5 @@
 import { BackgroundImageNames } from '@/states';
-import { siteConfigAtom } from '@/states/config';
+import { siteConfigAtom, useBackgroundImage } from '@/states/config';
 import { useAtom } from 'jotai';
 
 const SelectedImageButton = () => {
@@ -7,13 +7,13 @@ const SelectedImageButton = () => {
 }
 
 const NoneImageButton = () => {
-  const [backgroundImage, setBackgroundImage] = useAtom(siteConfigAtom.backgroundImage);
+  const [backgroundImage, setBackgroundImage] = useBackgroundImage();
   if (!backgroundImage) {
     return <SelectedImageButton />
   } else {
     return <div
       className='flex flex-row items-center justify-center w-10 h-10 border-2 cursor-pointer'
-      onClick={() => setBackgroundImage(null)}
+      onClick={() => setBackgroundImage("none")}
     >
       <p className='text-sm'>none</p>
     </div> 
@@ -23,7 +23,7 @@ const NoneImageButton = () => {
 const SelectImageButton = (props: { imageIndex: number; }) => {
   const name = BackgroundImageNames[props.imageIndex];
   const thumbnailName = `thumb_${name}`;
-  const [backgroundImage, setBackgroundImage] = useAtom(siteConfigAtom.backgroundImage);
+  const [backgroundImage, setBackgroundImage] = useBackgroundImage();
 
   if (backgroundImage === name) {
     return <SelectedImageButton />

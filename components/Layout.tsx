@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
-import { siteConfigAtom } from "@/states/config";
+import { siteConfigAtom, useBackgroundImage } from "@/states/config";
 
 // [Item]
 // 以下の性質を持つコンポーネント:
@@ -73,7 +73,8 @@ const GridBlock = (props: ItemParam & {
 export default function Layout(props: {
   children?: ReactNode;
 }) {
-  const [backgroundImage] = useAtom(siteConfigAtom.backgroundImage);
+  const [backgroundImage] = useBackgroundImage();
+  console.log("[backgroundImage]", backgroundImage);
 
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
