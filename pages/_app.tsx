@@ -26,5 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <ShadowImageBox />
     <GoogleAnalytics />
     <Component {...pageProps} />
+    
   </>
 }
