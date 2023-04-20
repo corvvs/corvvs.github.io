@@ -45,6 +45,16 @@ export const ItemsPrivate: WorkItem[] = [
 
 export const ItemsFT: WorkItem[] = [
   {
+    title: "nm",
+    repo: { url: "https://github.com/corvvs/num", icon: FaGithub },
+    summary: "実行・オブジェクトファイルを解析するコマンド nm の実装", techs: ["C"], wip: true,
+    body: [
+      "ELF 形式のファイルからシンボル情報を抽出して表示する、という、", 
+      "知らない人には本当に 何を言っているのか わからねー ことで有名なコマンド nm を作る。",
+    ].join("\n"),
+  },
+
+  {
     title: "Inception of Things",
     summary: "オーケストレーション実習", techs: ["Vagrant", "Kubernetes"], wip: true,
     body: [
