@@ -79,21 +79,30 @@ export default function Layout(props: {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
 
+  const lofiBackground = {
+    backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
+    backgroundSize: "cover",
+  };
+  const hifiBackground = {
+    backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
+    backgroundSize: "cover",
+};
+
+  // [メディアクエリ]
+  // sm 以上で左メニューが出る
+  // md 以上でパディングが大きくなる
   return (<><div
-      className="min-h-screen max-h-screen flex flex-col justify-stretch overflow-hidden"
-      style={{
-        backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
-        backgroundSize: "cover",
-      }}
+      className="min-h-screen max-h-screen flex flex-col justify-stretch overflow-hidden" style={lofiBackground}
     >
     <main
-      className="flex flex-row items-stretch grow shrink px-24 gap-4 overflow-hidden"
-      style={{
-        backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
-        backgroundSize: "cover",
-      }}
+      className="flex flex-row items-stretch grow shrink gap-4 overflow-hidden" style={hifiBackground}
     >
-      <div className='flex flex-col gap-4 grow-0 shrink-0 py-24'>
+
+      <div className='
+        hidden sm:flex flex-col gap-4 grow-0 shrink-0
+        py-24
+        sm:pl-2 md:pl-24
+      '>
         <div className='flex flex-col gap-1 grow shrink'>
           <ColumnHeader title="#" />
           { Items.map((item, i) =>
@@ -110,12 +119,18 @@ export default function Layout(props: {
 
       {
         props.children ? (<>
-          <div className='flex flex-col gap-1 max-h-full overflow-scroll pt-24'>
+          <div className='
+            flex flex-col gap-1 max-h-full overflow-scroll
+            pt-2 sm:pt-24
+            pl-2 sm:pl-0
+            pr-2 md:pr-24
+          '>
             { currentPath ? <ColumnHeader title={currentPath} /> : null }
             {props.children}
           </div>
         </>) : null
       }
+
     </main>
   </div>
   </>)
