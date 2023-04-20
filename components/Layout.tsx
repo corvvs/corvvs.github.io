@@ -1,11 +1,12 @@
 import { useAtom } from "jotai";
 import { Credit } from "./Credit";
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
 import { siteConfigAtom, useBackgroundImage } from "@/states/config";
+import { Menu } from "@headlessui/react";
 
 // [Item]
 // 以下の性質を持つコンポーネント:
@@ -24,7 +25,6 @@ const Items: ItemParam[] = [
   { title: "制作物", path: "works", },
   { title: "文書", path: "docs", },
   { title: "実験室", path: "lab", },
-  { title: ConfigButton, path: "config", },
 ];
 
 const Outer = (props: Omit<ItemParam, "title"> & {
@@ -70,6 +70,142 @@ const GridBlock = (props: ItemParam & {
   );
 };
 
+const MobileMain = (props: {
+  style?: CSSProperties;
+  children?: ReactNode;
+}) => {
+  const router = useRouter();
+  const [, currentPath] = router.pathname.split("/");
+
+  return <main
+    className="
+      flex sm:hidden
+      flex-col items-stretch grow shrink gap-1 overflow-hidden
+    "
+    style={props.style}
+  >
+    <div className="
+      w-full
+      flex flex-row items-center gap-4
+      px-2
+      border-b-[1px]
+    ">
+      <Menu as="div" className="relative inline-block text-left z-10">
+        <Menu.Button className="
+          inline-flex w-full justify-center
+          px-4 py-2
+          hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
+          focus-visible:ring-opacity-75
+        ">
+          Menu
+        </Menu.Button>
+
+        <Menu.Items className="
+          absolute left-0 mt-2 w-56
+          origin-top-right
+          p-2
+          border-[1px]
+          bg-black/75
+          divide-y divide-gray-100 shadow-lg ring-1 ring-black ring-opacity-5
+          focus:outline-none
+        ">
+          <div className='flex flex-col gap-1 grow shrink'>
+            { Items.map((item, i) =>
+              <GridBlock
+                key={i}
+                active={currentPath == item.path}
+                title={item.title} path={item.path}
+              />
+            )}
+          </div>
+        </Menu.Items>
+      </Menu>
+
+      <div className='grow shrink'>
+      </div>
+
+      <div className='flex flex-row items-center grow-0 shrink-0'>
+        <GridBlock
+          key="config"
+          title={ConfigButton}
+        />
+      </div>
+
+      <div className='flex flex-row grow-0 shrink-0'>
+        <Credit />
+      </div>
+
+    </div>
+
+    {
+      props.children ? (<>
+        <div className='
+          flex flex-col gap-1 max-h-full overflow-scroll
+          pt-2
+          pl-2
+          pr-2
+        '>
+          { currentPath ? <ColumnHeader title={currentPath} /> : null }
+          {props.children}
+        </div>
+      </>) : null
+    }
+  </main>
+}
+
+const PCMain = (props: {
+  style?: CSSProperties;
+  children?: ReactNode;
+}) => {
+  const router = useRouter();
+  const [, currentPath] = router.pathname.split("/");
+  return <main
+    className="
+      hidden sm:flex
+      flex-row items-stretch grow shrink gap-4 overflow-hidden
+    "
+    style={props.style}
+  >
+
+    <div className='
+      hidden sm:flex flex-col gap-4 grow-0 shrink-0
+      py-24
+      sm:pl-2 md:pl-24
+    '>
+      <div className='flex flex-col gap-1 grow shrink'>
+        <ColumnHeader title="#" />
+        { Items.map((item, i) =>
+          <GridBlock
+            key={i}
+            active={currentPath == item.path}
+            title={item.title} path={item.path}
+          />) }
+        <GridBlock
+          key="config"
+          title={ConfigButton}
+        />
+      </div>
+      <div className='grow-0 shrink-0'>
+        <Credit />
+      </div>
+    </div>
+
+    {
+      props.children ? (<>
+        <div className='
+          flex flex-col gap-1 max-h-full overflow-scroll
+          pt-2 sm:pt-24
+          pl-2 sm:pl-0
+          pr-2 md:pr-24
+        '>
+          { currentPath ? <ColumnHeader title={currentPath} /> : null }
+          {props.children}
+        </div>
+      </>) : null
+    }
+  </main>
+}
+
 export default function Layout(props: {
   children?: ReactNode;
 }) {
@@ -79,44 +215,26 @@ export default function Layout(props: {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
 
-  return (<><div
-      className="min-h-screen max-h-screen flex flex-col justify-stretch overflow-hidden"
-      style={{
-        backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
-        backgroundSize: "cover",
-      }}
-    >
-    <main
-      className="flex flex-row items-stretch grow shrink px-24 gap-4 overflow-hidden"
-      style={{
-        backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
-        backgroundSize: "cover",
-      }}
-    >
-      <div className='flex flex-col gap-4 grow-0 shrink-0 py-24'>
-        <div className='flex flex-col gap-1 grow shrink'>
-          <ColumnHeader title="#" />
-          { Items.map((item, i) =>
-            <GridBlock
-              key={i}
-              active={currentPath == item.path}
-              title={item.title} path={item.path}
-            />) }
-        </div>
-        <div className='grow-0 shrink-0'>
-          <Credit />
-        </div>
-      </div>
+  const lofiBackground = {
+    backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
+    backgroundSize: "cover",
+  };
+  const hifiBackground = {
+    backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
+    backgroundSize: "cover",
+};
 
-      {
-        props.children ? (<>
-          <div className='flex flex-col gap-1 max-h-full overflow-scroll pt-24'>
-            { currentPath ? <ColumnHeader title={currentPath} /> : null }
-            {props.children}
-          </div>
-        </>) : null
-      }
-    </main>
+  // [メディアクエリ]
+  // sm 以上で左メニューが出る
+  // md 以上でパディングが大きくなる
+  return (<><div
+      className="
+        min-h-screen max-h-screen flex flex-col justify-stretch overflow-hidden
+      "
+      style={lofiBackground}
+    >
+    <PCMain style={hifiBackground}>{props.children}</PCMain>
+    <MobileMain style={hifiBackground}>{props.children}</MobileMain>
   </div>
   </>)
 }
