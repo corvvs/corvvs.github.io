@@ -36,6 +36,8 @@ jobs:
     # プロジェクトルート直下に.nextディレクトリができる
     - name: build
       run: npm run build
+      env:
+        NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
 
     # 静的なHTMLとしてNext.jsアプリを生成する
     # プロジェクトルート直下にoutディレクトリができる
