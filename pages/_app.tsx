@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import ShadowImageBox from '@/components/ShadowImageBox'
-import { GoogleAnalytics } from '../src/lib/gtag'
+import { GoogleAnalytics } from '../components/gtag'
 
 export default function App({ Component, pageProps }: AppProps) {
   return <>
@@ -22,9 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
 
-      <GoogleAnalytics />
     </Head>  
     <ShadowImageBox />
+    <GoogleAnalytics />
     <Component {...pageProps} />
   </>
 }
