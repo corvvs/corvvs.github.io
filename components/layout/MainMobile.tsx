@@ -5,7 +5,7 @@ import _ from 'lodash';
 import ColumnHeader from "../ColumnHeader";
 import { ConfigButton } from "../ConfigButton";
 import { Menu, Transition } from "@headlessui/react";
-import { FaChevronDown, } from 'react-icons/fa';
+import { BsChevronDown } from 'react-icons/bs';
 import { GridBlock, Items } from "../layout/MainParts";
 import { HomeButton } from "../HomeButton";
 
@@ -15,7 +15,7 @@ export const MainMobile = (props: {
 }) => {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
-  const rotationClass = 'transform rotate-180';
+  const rotationClass = 'transform rotate-x-180';
 
   return <>
   <main
@@ -57,17 +57,18 @@ export const MainMobile = (props: {
             focus-visible:ring-opacity-75
           ">
             <span
-              className={`inline-block transition duration-100 ease-in-out ${open ? rotationClass : ''}`}
+              className={`inline-block transition duration-200 ease-in-out`}
+              style={{ transform: open ? "rotateX(180deg)" : '' }}
             >
-              <FaChevronDown />
+              <BsChevronDown />
             </span>
           </Menu.Button>
 
           <Transition
-            enter="transition duration-100 ease-out"
+            enter="transition duration-200 ease-out"
             enterFrom="transform scale-[98%] opacity-0"
             enterTo="transform scale-100 opacity-100"
-            leave="transition duration-100 ease-out"
+            leave="transition duration-200 ease-out"
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-[98%] opacity-0"
           >
