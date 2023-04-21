@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import _ from 'lodash';
 import { useBackgroundImage } from "@/states/config";
 import { MainPC } from "./layout/MainPC";
@@ -10,12 +10,14 @@ export default function Layout(props: {
   const [backgroundImage] = useBackgroundImage();
   console.log("[backgroundImage]", backgroundImage);
 
-  const lofiBackground = {
+  const lofiBackground: CSSProperties = {
     backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
+    backgroundPosition: "center",
     backgroundSize: "cover",
   };
-  const hifiBackground = {
+  const hifiBackground: CSSProperties = {
     backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
+    backgroundPosition: "center",
     backgroundSize: "cover",
   };
 
