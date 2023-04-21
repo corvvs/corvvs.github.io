@@ -82,30 +82,17 @@ const MobileMain = (props: {
   return <main
     className="
       flex sm:hidden
-      flex-col items-stretch grow shrink gap-1 overflow-hidden
+      flex-col-reverse items-stretch grow shrink gap-1 overflow-hidden
     "
     style={props.style}
   >
 
-    {
-      props.children ? (<>
-        <div className='
-          flex flex-col gap-1 max-h-full overflow-scroll
-          pt-2
-          pl-2
-          pr-2
-        '>
-          { currentPath ? <ColumnHeader title={currentPath} /> : null }
-          {props.children}
-        </div>
-      </>) : null
-    }
-
     <div className="
+      z-10
       w-full
       flex flex-row items-center gap-4
       px-2
-      border-b-[1px]
+      border-t-[1px]
     ">
       <Menu as="div" className="relative inline-block text-left ">
         {({ open }) => (<>
@@ -168,6 +155,20 @@ const MobileMain = (props: {
       </div>
 
     </div>
+
+    {
+      props.children ? (<>
+        <div className='
+          flex flex-col gap-1 max-h-full overflow-scroll
+          pt-2
+          pl-2
+          pr-2
+        '>
+          { currentPath ? <ColumnHeader title={currentPath} /> : null }
+          {props.children}
+        </div>
+      </>) : null
+    }
 
   </main>
 }
