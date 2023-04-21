@@ -1,12 +1,12 @@
-import { useAtom } from "jotai";
 import { Credit } from "./Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
 import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
-import { siteConfigAtom, useBackgroundImage } from "@/states/config";
-import { Menu } from "@headlessui/react";
+import { useBackgroundImage } from "@/states/config";
+import { Menu, Transition } from "@headlessui/react";
+import { FaChevronUp } from 'react-icons/fa';
 
 // [Item]
 // 以下の性質を持つコンポーネント:
@@ -31,6 +31,7 @@ const Outer = (props: Omit<ItemParam, "title"> & {
   active?: boolean;
   children: ReactNode;
 }) => {
+
   const router = useRouter();
   if (props.active) {
     return <div className="
@@ -76,6 +77,7 @@ const MobileMain = (props: {
 }) => {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
+  const rotationClass = 'transform rotate-180';
 
   return <main
     className="
@@ -91,34 +93,49 @@ const MobileMain = (props: {
       border-b-[1px]
     ">
       <Menu as="div" className="relative inline-block text-left z-10">
-        <Menu.Button className="
-          inline-flex w-full justify-center
-          px-4 py-2
-          hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
-          focus-visible:ring-opacity-75
-        ">
-          Menu
-        </Menu.Button>
+        {({ open }) => (<>
+          <Menu.Button className="
+            inline-flex w-full justify-center
+            px-4 py-2
+            hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
+            focus-visible:ring-opacity-75
+          ">
+            <span
+              className={`inline-block transition duration-100 ease-in-out ${open ? rotationClass : ''}`}
+            >
+              <FaChevronUp />
+            </span>
+          </Menu.Button>
 
-        <Menu.Items className="
-          absolute left-0 mt-2 w-56
-          origin-top-right
-          p-2
-          border-[1px]
-          bg-black/75
-          divide-y divide-gray-100 shadow-lg ring-1 ring-black ring-opacity-5
-          focus:outline-none
-        ">
-          <div className='flex flex-col gap-1 grow shrink'>
-            { Items.map((item, i) =>
-              <GridBlock
-                key={i}
-                active={currentPath == item.path}
-                title={item.title} path={item.path}
-              />
-            )}
-          </div>
-        </Menu.Items>
+          <Transition
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-[98%] opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-100 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-[98%] opacity-0"
+          >
+            <Menu.Items className="
+              absolute left-0 mt-2 w-56
+              origin-top-right
+              p-2
+              border-[1px]
+              bg-black/75
+              divide-y divide-gray-100 shadow-lg ring-1 ring-black ring-opacity-5
+              focus:outline-none
+            ">
+              <div className='flex flex-col gap-1 grow shrink'>
+                { Items.map((item, i) =>
+                  <GridBlock
+                    key={i}
+                    active={currentPath == item.path}
+                    title={item.title} path={item.path}
+                  />
+                )}
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>)}
       </Menu>
 
       <div className='grow shrink'>
