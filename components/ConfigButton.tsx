@@ -28,7 +28,7 @@ export function ConfigButton(props: { active: boolean, path?: string }) {
     : "flex flex-row border-[1px] column-item rounded-full p-1 text-xl";
 
   return <>
-    <div className="flex flex-row items-center justify-center">
+    <div className="flex flex-row outline-none items-center justify-center">
       <button
         className={className}
         onClick={() => setIsOpen(true)}

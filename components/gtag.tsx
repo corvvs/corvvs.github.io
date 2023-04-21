@@ -29,7 +29,7 @@ export const event = (props:{
 
 export const GoogleAnalytics = () => {
   console.log(existsGaId, GA_ID);
-  if (!existsGaId) { return <span>notag</span> }
+  if (!existsGaId) { return null; }
   return <>
     <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
     <Script id="ga" defer strategy="afterInteractive">

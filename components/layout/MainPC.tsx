@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ColumnHeader from "../ColumnHeader";
 import { ConfigButton } from "../ConfigButton";
 import { GridBlock, Items } from "../layout/MainParts";
+import { HomeButton } from "../HomeButton";
 
 export const MainPC = (props: {
   style?: CSSProperties;
@@ -34,6 +35,7 @@ export const MainPC = (props: {
             title={item.title} path={item.path}
           />) }
         <GridBlock key="config" title={ConfigButton} />
+        <GridBlock key="home" title={HomeButton} />
       </div>
       <div className='grow-0 shrink-0'>
         <Credit />
