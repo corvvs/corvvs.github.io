@@ -81,15 +81,27 @@ const MobileMain = (props: {
 
   return <main
     className="
+      h-screen
       flex sm:hidden
-      flex-col-reverse items-stretch grow shrink gap-1 overflow-hidden
+      flex-col items-stretch grow shrink gap-1 overflow-hidden
     "
     style={props.style}
   >
 
+
+    {
+      props.children ? (<>
+        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2'>
+          { currentPath ? <ColumnHeader title={currentPath} /> : null }
+          {props.children}
+        </div>
+      </>) : <div className='shrink grow'>
+      </div>
+    }
+
     <div className="
       z-10
-      w-full
+      w-screen
       flex flex-row items-center gap-4
       px-2
       border-t-[1px]
@@ -99,6 +111,7 @@ const MobileMain = (props: {
           <Menu.Button className="
             inline-flex w-full justify-center
             px-4 py-2
+            text-2xl
             hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
             focus-visible:ring-opacity-75
           ">
@@ -118,7 +131,7 @@ const MobileMain = (props: {
             leaveTo="transform scale-[98%] opacity-0"
           >
             <Menu.Items className="
-              absolute bottom-8 left-0 mb-2 w-56
+              absolute bottom-10 left-0 mb-2 w-56
               origin-top-left
               p-2
               border-[1px]
@@ -155,20 +168,6 @@ const MobileMain = (props: {
       </div>
 
     </div>
-
-    {
-      props.children ? (<>
-        <div className='
-          flex flex-col gap-1 max-h-full overflow-scroll
-          pt-2
-          pl-2
-          pr-2
-        '>
-          { currentPath ? <ColumnHeader title={currentPath} /> : null }
-          {props.children}
-        </div>
-      </>) : null
-    }
 
   </main>
 }
