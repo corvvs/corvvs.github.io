@@ -79,9 +79,9 @@ const MobileMain = (props: {
   const [, currentPath] = router.pathname.split("/");
   const rotationClass = 'transform rotate-180';
 
-  return <main
+  return <>
+  <main
     className="
-      h-screen
       flex sm:hidden
       flex-col items-stretch grow shrink gap-1 overflow-hidden
     "
@@ -91,20 +91,24 @@ const MobileMain = (props: {
 
     {
       props.children ? (<>
-        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2'>
+        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2 pb-50'>
           { currentPath ? <ColumnHeader title={currentPath} /> : null }
           {props.children}
         </div>
       </>) : <div className='shrink grow'>
       </div>
     }
+  </main>
 
     <div className="
+      fixed
+      bottom-0
       z-10
       w-screen
       flex flex-row items-center gap-4
       px-2
       border-t-[1px]
+      backdrop-blur-md
     ">
       <Menu as="div" className="relative inline-block text-left ">
         {({ open }) => (<>
@@ -169,7 +173,7 @@ const MobileMain = (props: {
 
     </div>
 
-  </main>
+  </>
 }
 
 const PCMain = (props: {
@@ -230,9 +234,6 @@ export default function Layout(props: {
 }) {
   const [backgroundImage] = useBackgroundImage();
   console.log("[backgroundImage]", backgroundImage);
-
-  const router = useRouter();
-  const [, currentPath] = router.pathname.split("/");
 
   const lofiBackground = {
     backgroundImage: backgroundImage ? `url(/bg/lofi_${backgroundImage})` : undefined,
