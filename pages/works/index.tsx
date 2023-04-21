@@ -1,5 +1,6 @@
 import { ExLinkButton } from "@/components/ExLinkButton";
 import Layout from "@/components/Layout";
+import MainContentBlock from "@/components/MainContentBlock";
 import { ItemsFT, ItemsPrivate, WorkItem } from "@/data";
 
 
@@ -12,7 +13,7 @@ const TechsList = (props: {
 }
 
 const WorksListItem = (item: WorkItem) => {
-  return <li className="flex flex-col border-[1px] p-2 max-w-sm gap-2">
+  return <li className="flex flex-col border-[1px] p-2 w-full sm:max-w-sm gap-2">
     <div className="flex flex-col">
       <div className="flex flex-row items-center border-b-[1px] gap-1">
         <h3 className="text-xl font-bold">
@@ -41,21 +42,16 @@ const WorksList = (props: {
 };
 
 const WorksContent = () => {
-  return (
-    <div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
-
-      <WorksList title="個人的なもの" items={ItemsPrivate} />
-
-      <WorksList title="42Tokyo Exercises" items={ItemsFT} />
-
-    </div>
-  );
+  return (<>
+    <WorksList title="個人的なもの" items={ItemsPrivate} />
+    <WorksList title="42Tokyo Exercises" items={ItemsFT} />
+  </>);
 }
 
 export default function Works() {
   return (
     <Layout>
-      <WorksContent />
+      <MainContentBlock><WorksContent /></MainContentBlock>
     </Layout>
   );
 }

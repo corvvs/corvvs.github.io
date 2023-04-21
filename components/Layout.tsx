@@ -91,7 +91,7 @@ const MobileMain = (props: {
 
     {
       props.children ? (<>
-        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2 pb-50'>
+        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2 pb-12'>
           { currentPath ? <ColumnHeader title={currentPath} /> : null }
           {props.children}
         </div>
@@ -101,7 +101,7 @@ const MobileMain = (props: {
   </main>
 
     <div className="
-      fixed
+      fixed sm:hidden
       bottom-0
       z-10
       w-screen
@@ -242,7 +242,7 @@ export default function Layout(props: {
   const hifiBackground = {
     backgroundImage: backgroundImage ? `url(/bg/${backgroundImage})` : undefined,
     backgroundSize: "cover",
-};
+  };
 
   // [メディアクエリ]
   // sm 以上で左メニューが出る

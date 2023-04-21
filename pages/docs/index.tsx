@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import MainContentBlock from "@/components/MainContentBlock";
 import { DocItem, ItemsQiita } from "@/data";
 
 const DocListItem = (props: { item: DocItem; }) => {
@@ -11,7 +12,7 @@ const DocListItem = (props: { item: DocItem; }) => {
 
 const DocsContent = () => {
   return (
-    <div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
+    <>
 
       <div className="flex flex-col gap-4">
         <h3 className='bio-sub-header'>Qiita</h3>
@@ -20,14 +21,14 @@ const DocsContent = () => {
         </ul>
       </div>
 
-    </div>
+    </>
   );
 }
 
 export default function Docs() {
   return (
     <Layout>
-      <DocsContent />
+      <MainContentBlock><DocsContent /></MainContentBlock>
     </Layout>
   );
 }
