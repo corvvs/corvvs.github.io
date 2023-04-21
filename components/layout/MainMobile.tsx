@@ -7,6 +7,7 @@ import { ConfigButton } from "../ConfigButton";
 import { Menu, Transition } from "@headlessui/react";
 import { FaChevronDown, } from 'react-icons/fa';
 import { GridBlock, Items } from "../layout/MainParts";
+import { HomeButton } from "../HomeButton";
 
 export const MainMobile = (props: {
   style?: CSSProperties;
@@ -97,7 +98,8 @@ export const MainMobile = (props: {
       </div>
 
       <div className='flex flex-row items-center grow-0 shrink-0'>
-        <GridBlock key="config" title={ConfigButton} />
+      <GridBlock key="config" title={ConfigButton} />
+      <GridBlock key="config" title={HomeButton} />
       </div>
 
       <div className='flex flex-row grow-0 shrink-0'>
