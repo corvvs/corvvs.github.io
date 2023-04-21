@@ -19,7 +19,7 @@ const SocialItem = (props: {
 }
 
 export default function AboutMe() {
-  return (<div className='reader-block flex flex-col border-[0.1em] gap-8 p-8'>
+  return (<>
 
     <div className='flex flex-row gap-8'>
       <div
@@ -89,6 +89,6 @@ export default function AboutMe() {
       <SocialItem service='GooglePhoto' url="https://photos.app.goo.gl/EY7kQg4VsbUzzhbX8" icon={<TbBrandGooglePhotos />} id="album"/>
       </ul>
     </div>
-  </div>)
+  </>)
 }
 
