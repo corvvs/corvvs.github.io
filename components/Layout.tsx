@@ -6,7 +6,7 @@ import ColumnHeader from "./ColumnHeader";
 import { ConfigButton } from "./ConfigButton";
 import { useBackgroundImage } from "@/states/config";
 import { Menu, Transition } from "@headlessui/react";
-import { FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 // [Item]
 // 以下の性質を持つコンポーネント:
@@ -82,17 +82,19 @@ const MobileMain = (props: {
   return <main
     className="
       flex sm:hidden
-      flex-col items-stretch grow shrink gap-1 overflow-hidden
+      flex-col-reverse items-stretch grow shrink gap-1 overflow-hidden
     "
     style={props.style}
   >
+
     <div className="
+      z-10
       w-full
       flex flex-row items-center gap-4
       px-2
-      border-b-[1px]
+      border-t-[1px]
     ">
-      <Menu as="div" className="relative inline-block text-left z-10">
+      <Menu as="div" className="relative inline-block text-left ">
         {({ open }) => (<>
           <Menu.Button className="
             inline-flex w-full justify-center
@@ -103,7 +105,7 @@ const MobileMain = (props: {
             <span
               className={`inline-block transition duration-100 ease-in-out ${open ? rotationClass : ''}`}
             >
-              <FaChevronUp />
+              <FaChevronDown />
             </span>
           </Menu.Button>
 
@@ -116,8 +118,8 @@ const MobileMain = (props: {
             leaveTo="transform scale-[98%] opacity-0"
           >
             <Menu.Items className="
-              absolute left-0 mt-2 w-56
-              origin-top-right
+              absolute bottom-8 left-0 mb-2 w-56
+              origin-top-left
               p-2
               border-[1px]
               bg-black/75
@@ -167,6 +169,7 @@ const MobileMain = (props: {
         </div>
       </>) : null
     }
+
   </main>
 }
 
