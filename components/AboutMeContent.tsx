@@ -1,18 +1,13 @@
 import Image from 'next/image'
-import { TbBrandGooglePhotos } from 'react-icons/tb';
 import { InlineIcon } from './lv1/InlineIcon';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { AMInterests, AMLanguages, AMSocialItemParams, AMSocialItems } from '@/data';
 
-const SocialItem = (props: {
-  service: string;
-  url: string;
-  icon?: JSX.Element;
-  id: string;
-}) => {
+const SocialItem = (props: AMSocialItemParams) => {
+  const Icon = props.icon;
   return <li className='flex flex-row'>
     { props.service }
     <a href={props.url} className='flex flex-row'>
-      {props.icon ? <InlineIcon i={props.icon}/> : <span className='w-2' />}
+      {Icon ? <InlineIcon i={<Icon />}/> : <span className='w-2' />}
       { props.id }
     </a>
   </li>;
@@ -55,10 +50,7 @@ export default function AboutMe() {
     <div>
       <h3 className='bio-sub-header'>関心事</h3>
       <ul className='flex flex-row flex-wrap gap-4'>
-      <li>手触りのいいUI</li>
-      <li>SVG</li>
-      <li>GIS</li>
-      <li>可視化</li>
+      { AMInterests.map(item => <li key={item}>{item}</li>) }
       </ul>
     </div>
 
@@ -66,16 +58,7 @@ export default function AboutMe() {
     <div>
       <h3 className='bio-sub-header'>書いたことがある言語リスト</h3>
       <ul className='flex flex-row flex-wrap gap-4'>
-        <li className='lang-well'>C</li>
-        <li className='lang-ok'>C++</li>
-        <li className='lang-well'>Perl</li>
-        <li className='lang-well'>Ruby</li>
-        <li className='lang-ok'>Python</li>
-        <li className='lang-ok'>Swift</li>
-        <li className='lang-well'>TypeScript</li>
-        <li className='lang-not-ok'>Go</li>
-        <li className='lang-not-ok'>x68_64Asm</li>
-        <li className='lang-not-ok'>OCaml</li>
+        { AMLanguages.map(item => <li key={item.name} className={`lang-${item.good}`}>{item.name}</li>) }
       </ul>
       (触れた順; 色が薄いやつほど自信がない)
     </div>
@@ -83,10 +66,7 @@ export default function AboutMe() {
     <div>
       <h3 className='bio-sub-header'>Social</h3>
       <ul>
-      <SocialItem service='GitHub' url="https://github.com/corvvs" icon={<FaGithub />} id="@corvvs"/>
-      <SocialItem service='Twitter' url="https://twitter.com/corvvs" icon={<FaTwitter />} id="@corvvs"/>
-      <SocialItem service='Qiita' url="https://qiita.com/corvvs" id="@corvvs"/>
-      <SocialItem service='GooglePhoto' url="https://photos.app.goo.gl/EY7kQg4VsbUzzhbX8" icon={<TbBrandGooglePhotos />} id="album"/>
+      { AMSocialItems.map(item => <SocialItem key={item.service} {...item} />) }
       </ul>
     </div>
   </>)

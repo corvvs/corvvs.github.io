@@ -1,3 +1,6 @@
+export type { AMSocialItemParams } from './about_me'
+export { AMInterests, AMLanguages, AMSocialItems } from './about_me'
+
 export type { NavigationItemParam } from './navigation'
 export { NavigationItems } from './navigation'
 
