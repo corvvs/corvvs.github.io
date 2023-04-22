@@ -40,6 +40,9 @@ const Outer = (props: Omit<ItemParam, "title"> & {
     return (
       <div className="
         column-item
+        transition
+        ease-out
+        duration-200
         flex flex-col items-center p-[0.05em]
         hover:opacity-100 cursor-pointer border-[0.1em]
       "
