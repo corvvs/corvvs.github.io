@@ -1,5 +1,5 @@
 import { FaGithub, FaTwitter } from 'react-icons/fa';
-import { InlineIcon } from './InlineIcon';
+import { InlineIcon } from './lv1/InlineIcon';
 
 export const Credit = () => {
   return (<>

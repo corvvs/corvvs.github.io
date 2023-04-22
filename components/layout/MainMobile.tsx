@@ -2,12 +2,12 @@ import { Credit } from "../Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
-import ColumnHeader from "../ColumnHeader";
-import { ConfigButton } from "../ConfigButton";
+import ColumnHeader from "../lv1/ColumnHeader";
+import { ConfigButton } from "../lv1/ConfigButton";
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown } from 'react-icons/bs';
 import { GridBlock, Items } from "../layout/MainParts";
-import { HomeButton } from "../HomeButton";
+import { HomeButton } from "../lv1/HomeButton";
 
 export const MainMobile = (props: {
   style?: CSSProperties;

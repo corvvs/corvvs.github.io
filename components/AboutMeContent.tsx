@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { TbBrandGooglePhotos } from 'react-icons/tb';
-import { InlineIcon } from './InlineIcon';
+import { InlineIcon } from './lv1/InlineIcon';
 import { FaGithub, FaTwitter } from 'react-icons/fa';
 
 const SocialItem = (props: {

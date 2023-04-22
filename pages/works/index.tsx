@@ -1,4 +1,4 @@
-import { ExLinkButton } from "@/components/ExLinkButton";
+import { ExLinkButton } from "@/components/lv1/ExLinkButton";
 import Layout from "@/components/Layout";
 import MainContentBlock from "@/components/MainContentBlock";
 import { ItemsFT, ItemsPrivate, WorkItem } from "@/data";

@@ -1,8 +1,8 @@
 import { BsEasel } from 'react-icons/bs';
 import { InlineIcon } from "./InlineIcon";
 import { useState } from "react";
-import { ChangeBackgroundImage } from "./config/ChangeBackgroundImage";
-import { Modal } from "./Modal";
+import { ChangeBackgroundImage } from "../config/ChangeBackgroundImage";
+import { Modal } from "../Modal";
 import ColumnHeader from "./ColumnHeader";
 
 export function ConfigContent() {

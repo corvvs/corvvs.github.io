@@ -1,4 +1,4 @@
-import { ExLink } from "@/components/ExLinkButton";
+import { ExLink } from "@/components/lv1/ExLinkButton";
 import { FaGithub } from "react-icons/fa";
 
 export type WorkItem = {
