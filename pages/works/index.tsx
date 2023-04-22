@@ -1,7 +1,7 @@
 import { ExLinkButton } from "@/components/lv1/ExLinkButton";
 import Layout from "@/components/Layout";
 import MainContentBlock from "@/components/MainContentBlock";
-import { ItemsFT, ItemsPrivate, WorkItem } from "@/data";
+import { WorkItemsFT, WorkItemsPrivate, WorkItem } from "@/data";
 
 
 const TechsList = (props: {
@@ -43,8 +43,8 @@ const WorksList = (props: {
 
 const WorksContent = () => {
   return (<>
-    <WorksList title="個人的なもの" items={ItemsPrivate} />
-    <WorksList title="42Tokyo Exercises" items={ItemsFT} />
+    <WorksList title="個人的なもの" items={WorkItemsPrivate} />
+    <WorksList title="42Tokyo Exercises" items={WorkItemsFT} />
   </>);
 }
 
