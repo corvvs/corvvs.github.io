@@ -3,7 +3,7 @@ import { InlineIcon } from "./InlineIcon";
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
-export function HomeButton(props: { active: boolean, path?: string }) {
+export function HomeButton() {
   const router = useRouter();
   const isRoot = _.compact(router.pathname.split("/")).length === 0;
   const className = isRoot

@@ -18,7 +18,7 @@ export function ConfigContent() {
   </div>
 }
 
-export function ConfigButton(props: { active: boolean, path?: string }) {
+export function ConfigButton() {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
     setIsOpen(false);

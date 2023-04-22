@@ -1,4 +1,9 @@
-type ItemComponent = (props: { active: boolean; path?: string; }) => JSX.Element;
+export type NavigationItemComponentParams = {
+  active: boolean;
+  path?: string;
+}
+
+type ItemComponent = (props: NavigationItemComponentParams) => JSX.Element;
 
 export type NavigationItemParam = {
   title: ItemComponent | string;

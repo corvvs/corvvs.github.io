@@ -1,7 +1,6 @@
 import { Credit } from "../Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
-import _ from 'lodash';
 import ColumnHeader from "../lv1/ColumnHeader";
 import { ConfigButton } from "../lv1/ConfigButton";
 import { GridBlock } from "../layout/MainParts";

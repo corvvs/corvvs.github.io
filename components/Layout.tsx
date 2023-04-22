@@ -1,5 +1,4 @@
 import { CSSProperties, ReactNode } from "react";
-import _ from 'lodash';
 import { useBackgroundImage } from "@/states/config";
 import { MainPC } from "./layout/MainPC";
 import { MainMobile } from "./layout/MainMobile";

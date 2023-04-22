@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
-import _ from 'lodash';
-import { NavigationItemParam } from "@/data";
+import type { NavigationItemParam } from "@/data";
 
 const Outer = (props: Omit<NavigationItemParam, "title"> & {
   active?: boolean;

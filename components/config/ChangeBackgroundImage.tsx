@@ -1,6 +1,5 @@
 import { BackgroundImageNames } from '@/states';
-import { siteConfigAtom, useBackgroundImage } from '@/states/config';
-import { useAtom } from 'jotai';
+import { useBackgroundImage } from '@/states/config';
 
 const SelectedImageButton = () => {
   return <div className='flex flex-row items-center justify-center w-10 h-10 border-2' />

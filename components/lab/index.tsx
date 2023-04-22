@@ -8,16 +8,14 @@ import { SiMdnwebdocs } from 'react-icons/si';
 const AbsoluteLengthDimensions = ["cm", "mm", "Q", "in", "pc", "pt", "px"] as const;
 const RelativeLengthDimensions = ["em", "ex", "ch", "rem", "lh", "rlh", "vw", "vh", "vmin", "vmax", "vb", "vi"] as const;
 
-type AbsoluteLengthDimension = typeof AbsoluteLengthDimensions[number];
-type RelativeLengthDimension = typeof RelativeLengthDimensions[number];
-type LengthDimention = AbsoluteLengthDimension | RelativeLengthDimension;
+// type AbsoluteLengthDimension = typeof AbsoluteLengthDimensions[number];
+// type RelativeLengthDimension = typeof RelativeLengthDimensions[number];
+// type LengthDimention = AbsoluteLengthDimension | RelativeLengthDimension;
 
-
-
-type SizeValue = {
-  num: number;
-  unit: LengthDimention;
-};
+// type SizeValue = {
+//   num: number;
+//   unit: LengthDimention;
+// };
 
 const styleSettingInitialValues = {
   backdrop: {
