@@ -66,11 +66,11 @@ export const MainMobile = (props: {
 
           <Transition
             enter="transition duration-200 ease-out"
-            enterFrom="transform scale-[98%] opacity-0"
-            enterTo="transform scale-100 opacity-100"
+            enterFrom="transform translate-y-1 opacity-0"
+            enterTo="transform opacity-100"
             leave="transition duration-200 ease-out"
-            leaveFrom="transform scale-100 opacity-100"
-            leaveTo="transform scale-[98%] opacity-0"
+            leaveFrom="transform opacity-100"
+            leaveTo="transform translate-y-1 opacity-0"
           >
             <Menu.Items className="
               absolute bottom-10 left-0 mb-2 w-32 sm:w-56

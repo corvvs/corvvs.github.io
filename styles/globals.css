@@ -81,6 +81,7 @@ body {
 
 .column-item {
   border-color: transparent;
+  transition: border-color 0.2s ease-out;
 }
 
 .column-item-active {
