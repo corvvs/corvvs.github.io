@@ -6,8 +6,9 @@ import ColumnHeader from "../lv1/ColumnHeader";
 import { ConfigButton } from "../lv1/ConfigButton";
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown } from 'react-icons/bs';
-import { GridBlock, Items } from "../layout/MainParts";
+import { GridBlock } from "../layout/MainParts";
 import { HomeButton } from "../lv1/HomeButton";
+import { NavigationItems } from "@/data";
 
 export const MainMobile = (props: {
   style?: CSSProperties;
@@ -82,7 +83,7 @@ export const MainMobile = (props: {
               focus:outline-none
             ">
               <div className='flex flex-col gap-1 grow shrink'>
-                { Items.map((item, i) =>
+                { NavigationItems.map((item, i) =>
                   <GridBlock
                     key={i}
                     active={currentPath == item.path}

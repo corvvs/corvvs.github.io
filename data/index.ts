@@ -1,6 +1,27 @@
 import { ExLink } from "@/components/lv1/ExLinkButton";
 import { FaGithub } from "react-icons/fa";
 
+// [navigation]
+
+// [Item]
+// 以下の性質を持つコンポーネント:
+// - クリックした時の遷移先として `path: string` を持つ.
+// - パラメータ `active: boolean` を取る or 表示文字列として`title: string` を持つ.
+
+type ItemComponent = (props: { active: boolean; path?: string; }) => JSX.Element;
+
+export type NavigationItemParam = {
+  title: ItemComponent | string;
+  path?: string;
+};
+
+export const NavigationItems: NavigationItemParam[] = [
+  { title: "作者の情報", path: "about_me", },
+  { title: "制作物", path: "works", },
+  { title: "文書", path: "docs", },
+  { title: "実験室", path: "lab", },
+];
+
 export type WorkItem = {
   title: string;
   repo?: string | ExLink;
@@ -9,7 +30,6 @@ export type WorkItem = {
   wip?: boolean;
   body?: string;
 };
-
 
 export const ItemsPrivate: WorkItem[] = [
   {
