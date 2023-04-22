@@ -14,11 +14,17 @@
     }
   },
 
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "next/core-web-vitals"
+  ],
+
   "rules": {
     "react/jsx-uses-vars": "error",
     "react/jsx-uses-react": "error"
   },
-  "extends": ["eslint:recommended", "next/core-web-vitals"],
 
   "plugins": [
     "@typescript-eslint",
