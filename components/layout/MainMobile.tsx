@@ -39,6 +39,7 @@ export const MainMobile = (props: {
 
     <div className="
       fixed sm:hidden
+      h-16
       bottom-0
       z-10
       w-screen
