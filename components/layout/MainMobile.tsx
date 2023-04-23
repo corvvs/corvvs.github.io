@@ -39,15 +39,17 @@ export const MainMobile = (props: {
 
     <div className="
       fixed sm:hidden
+      h-16
       bottom-0
       z-10
       w-screen
       flex flex-row items-center gap-4
       px-2
+      pl-[10px]
       border-t-[1px]
       backdrop-blur-md
     ">
-      <Menu as="div" className="relative inline-block text-left ">
+      <Menu as="div" className="relative inline-block text-left">
         {({ open }) => (<>
           <Menu.Button className="
             inline-flex w-full justify-center
