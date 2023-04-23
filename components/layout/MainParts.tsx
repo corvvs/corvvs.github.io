@@ -44,7 +44,10 @@ export const GridBlock = (props: NavigationItemParam & {
   }
   return (
     <Outer active={props.active} path={props.path}>
-      <div className="flex flex-col w-24 sm:w-40 p-1 px-2 text-xl font-bold tracking-wide">{t}</div>
+      <div className="
+        flex flex-col w-30 sm:w-40 p-1 px-2 font-bold tracking-wide
+        text-2xl sm:text-xl
+      ">{t}</div>
     </Outer>
   );
 };

@@ -21,6 +21,7 @@ export const MainMobile = (props: {
     className="
       flex sm:hidden
       flex-col items-stretch grow shrink gap-1 overflow-hidden
+      text-lg
     "
     style={props.style}
   >
@@ -72,7 +73,8 @@ export const MainMobile = (props: {
             leaveTo="transform translate-y-1 opacity-0"
           >
             <Menu.Items className="
-              absolute bottom-10 left-0 mb-2 w-32 sm:w-56
+              absolute bottom-10 left-0 mb-2
+              w-40 sm:w-56
               origin-top-left
               p-2
               border-[1px]
