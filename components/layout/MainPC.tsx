@@ -1,4 +1,4 @@
-import { Credit } from "../Credit";
+import { Credit } from "../lv2/Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
 import ColumnHeader from "../lv1/ColumnHeader";
