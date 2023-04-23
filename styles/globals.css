@@ -70,8 +70,8 @@ body {
 }
 
 .reader-block {
-  backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.60);
 }
 
 .column-header {
@@ -81,7 +81,7 @@ body {
 
 .column-item {
   border-color: transparent;
-  transition: border-color 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .column-item-active {
@@ -92,6 +92,7 @@ body {
 .column-item:hover {
   border-color: rgb(209, 217, 206);
   backdrop-filter: blur(1em);
+  background-color: rgba(0, 0, 0, 0.20);
 }
 
 * {
