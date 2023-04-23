@@ -1,13 +1,13 @@
-import { Credit } from "../Credit";
+import { Credit } from "../lv2/Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
-import _ from 'lodash';
-import ColumnHeader from "../ColumnHeader";
-import { ConfigButton } from "../ConfigButton";
+import ColumnHeader from "../lv1/ColumnHeader";
+import { ConfigButton } from "../lv1/ConfigButton";
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown } from 'react-icons/bs';
-import { GridBlock, Items } from "../layout/MainParts";
-import { HomeButton } from "../HomeButton";
+import { GridBlock } from "../layout/MainParts";
+import { HomeButton } from "../lv1/HomeButton";
+import { NavigationItems } from "@/data";
 
 export const MainMobile = (props: {
   style?: CSSProperties;
@@ -15,7 +15,6 @@ export const MainMobile = (props: {
 }) => {
   const router = useRouter();
   const [, currentPath] = router.pathname.split("/");
-  const rotationClass = 'transform rotate-x-180';
 
   return <>
   <main
@@ -82,7 +81,7 @@ export const MainMobile = (props: {
               focus:outline-none
             ">
               <div className='flex flex-col gap-1 grow shrink'>
-                { Items.map((item, i) =>
+                { NavigationItems.map((item, i) =>
                   <GridBlock
                     key={i}
                     active={currentPath == item.path}

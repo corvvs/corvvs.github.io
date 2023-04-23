@@ -1,27 +1,8 @@
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
-import _ from 'lodash';
+import type { NavigationItemParam } from "@/data";
 
-// [Item]
-// 以下の性質を持つコンポーネント:
-// - クリックした時の遷移先として `path: string` を持つ.
-// - パラメータ `active: boolean` を取る or 表示文字列として`title: string` を持つ.
-
-type ItemComponent = (props: { active: boolean; path?: string; }) => JSX.Element;
-
-type ItemParam = {
-  title: ItemComponent | string;
-  path?: string;
-};
-
-export const Items: ItemParam[] = [
-  { title: "作者の情報", path: "about_me", },
-  { title: "制作物", path: "works", },
-  { title: "文書", path: "docs", },
-  { title: "実験室", path: "lab", },
-];
-
-const Outer = (props: Omit<ItemParam, "title"> & {
+const Outer = (props: Omit<NavigationItemParam, "title"> & {
   active?: boolean;
   children: ReactNode;
 }) => {
@@ -54,7 +35,7 @@ const Outer = (props: Omit<ItemParam, "title"> & {
   }
 };
 
-export const GridBlock = (props: ItemParam & {
+export const GridBlock = (props: NavigationItemParam & {
   active?: boolean;
 }) => {
   const t = props.title;

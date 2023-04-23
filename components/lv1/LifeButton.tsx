@@ -1,3 +1,5 @@
+import React from "react";
+
 export const LifeButton = (
   props: React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,

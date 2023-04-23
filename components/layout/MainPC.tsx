@@ -1,11 +1,11 @@
-import { Credit } from "../Credit";
+import { Credit } from "../lv2/Credit";
 import { CSSProperties, ReactNode } from "react";
 import { useRouter } from "next/router";
-import _ from 'lodash';
-import ColumnHeader from "../ColumnHeader";
-import { ConfigButton } from "../ConfigButton";
-import { GridBlock, Items } from "../layout/MainParts";
-import { HomeButton } from "../HomeButton";
+import ColumnHeader from "../lv1/ColumnHeader";
+import { ConfigButton } from "../lv1/ConfigButton";
+import { GridBlock } from "../layout/MainParts";
+import { HomeButton } from "../lv1/HomeButton";
+import { NavigationItems } from "@/data";
 
 export const MainPC = (props: {
   style?: CSSProperties;
@@ -28,7 +28,7 @@ export const MainPC = (props: {
     '>
       <div className='flex flex-col gap-1 grow shrink'>
         <ColumnHeader title="#" />
-        { Items.map((item, i) =>
+        { NavigationItems.map((item, i) =>
           <GridBlock
             key={i}
             active={currentPath == item.path}

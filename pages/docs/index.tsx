@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import MainContentBlock from "@/components/MainContentBlock";
-import { DocItem, ItemsQiita } from "@/data";
+import { DocItem, DocItemsQiita } from "@/data";
 
 const DocListItem = (props: { item: DocItem; }) => {
   const { item } = props;
@@ -17,7 +17,7 @@ const DocsContent = () => {
       <div className="flex flex-col gap-4">
         <h3 className='bio-sub-header'>Qiita</h3>
         <ul className="flex flex-col gap-4">
-          { ItemsQiita.map((item) => <DocListItem key={item.title} item={item} />) }
+          { DocItemsQiita.map((item) => <DocListItem key={item.title} item={item} />) }
         </ul>
       </div>
 
