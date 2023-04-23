@@ -28,7 +28,7 @@ export const MainMobile = (props: {
 
     {
       props.children ? (<>
-        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2 pb-12'>
+        <div className=' flex flex-col gap-1 shrink grow overflow-scroll pt-2 pl-2 pr-2 pb-20'>
           { currentPath ? <ColumnHeader title={currentPath} /> : null }
           {props.children}
         </div>
