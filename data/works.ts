@@ -64,7 +64,7 @@ export const WorkItemsFT: WorkItem[] = [
   {
     title: "malloc",
     repo: { url: "https://github.com/corvvs/allocyou", icon: FaGithub },
-    summary: "メモリアロケータ(malloc/free/realloc ...など)の実装", techs: ["C"], wip: true,
+    summary: "メモリアロケータ(malloc/free/realloc ...など)の実装", techs: ["C"],
     body: [
       "みんな大好き malloc とそのフレンズを自作する。",
       "malloc のおおまかなコンセプトは「システムからユーザ空間に大きなメモリ領域を確保しておき, それをユーザからのリクエストに応じて細切れにして渡す」。",
@@ -163,6 +163,18 @@ export const WorkItemsFT: WorkItem[] = [
       "結局1スレッド - 1プロセスに落ち着いた。",
       "イベント監視系として select / poll / kqueue を任意に差し替えられるようにしてみた(epollも使えたが, 基本的に macOS 上で開発・テストしていたのでこの時はスルー)。",
       "クラス設計にかなりの時間をかけたが、その甲斐はあったと思う。",
+    ].join("\n"),
+  },
+
+  {
+    title: "2048",
+    repo: { url: "https://github.com/corvvs/2048", icon: FaGithub },
+    summary: "テキストUIでプレイできる2048パズルの作成", techs: ["C", "ncurses"],
+    body: [
+      "2人チーム, タイムリミット60時間。",
+      "趣味の王様こと2048をテキストUIで実装する。",
+      "楽しくなっちゃったので機能を色々持ってみた。",
+      "ただしアニメーションまではできず。"
     ].join("\n"),
   },
 
