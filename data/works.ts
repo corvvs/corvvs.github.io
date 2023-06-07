@@ -44,20 +44,53 @@ export const WorkItemsPrivate: WorkItem[] = [
 
 export const WorkItemsFT: WorkItem[] = [
   {
+    title: "ping",
+    repo: { url: "https://github.com/corvvs/ding", icon: FaGithub },
+    summary: "inetutils 版 ping コマンドの再現", techs: ["C", "Docker", "Wireshark"], wip: true,
+    body: [
+      "いまいち使い方がわかってないコマンドの1つである ping を実装する。",
+      "要件とは直接関係しないのだが, 初めてパケットキャプチャなるものをやってみた。",
+    ].join("\n"),
+  },
+
+  {
+    title: "Cloud-1",
+    summary: "クラウドインフラのセットアップとコンテナアプリケーションデプロイの自動化演習", techs: ["Terraform", "Ansible", "Docker", "AWS"], wip: true,
+    body: [
+      "2人チーム。",
+      "マルチコンテナ構成のアプリケーションを, クラウド上のVM(1つ!!)にデプロイする。",
+      "ただしデプロイは完全に自動化されている必要がある。",
+      "(あと自腹も切る必要がある。)",
+      "自動化を要求されているのはデプロイのみだが、どうせならインフラの構築も自動化しようぜ、ということでTerraformを持ち出す。",
+    ].join("\n"),
+  },
+
+  {
     title: "nm",
     repo: { url: "https://github.com/corvvs/num", icon: FaGithub },
     summary: "実行・オブジェクトファイルを解析するコマンド nm の実装", techs: ["C"], wip: true,
     body: [
-      "ELF 形式のファイルからシンボル情報を抽出して表示する、という、", 
+      "バイナリファイルからシンボル情報を抽出して表示する、という、", 
       "知らない人には本当に 何を言っているのか わからねー ことで有名なコマンド nm を作る。",
+      "なお, ファイルフォーマットは ELF のみが要求されている。",
     ].join("\n"),
   },
 
   {
     title: "Inception of Things",
-    summary: "オーケストレーション実習", techs: ["Vagrant", "Kubernetes"], wip: true,
+    summary: "k8sクラスタ上でのCD実習", techs: ["Vagrant", "Kubernetes", "Helm", "ArgoCD", "GitLab"], wip: true,
     body: [
       "2人チーム。",
+      "軽量版Kubernertes(k3s, k3d)を使ってクラスタを作り, CD環境を立ち上げる。",
+      "この課題で最も難しいのは Vagrant が動くマシンを用意すること(異論は認める)。",
+    ].join("\n"),
+  },
+
+  {
+    title: "MLP",
+    repo: { url: "https://github.com/corvvs/mlp", icon: FaGithub },
+    summary: "多層パーセプトロンの実装", techs: [ "Data Science", "TypeScript" ], wip: true,
+    body: [
     ].join("\n"),
   },
 
@@ -99,6 +132,14 @@ export const WorkItemsFT: WorkItem[] = [
       "ML / 統計系のライブラリは使用禁止(math系はOK)。",
       "へそ曲がりなので TypeScript で書いた。",
       "画像出力まで含めて外部ライブラリにほとんど依存しない(lodash と sprintf 以外)で書けたのでそこそこ満足。",
+    ].join("\n"),
+  },
+
+  {
+    title: "linear regression",
+    repo: { url: "https://github.com/corvvs/regress_progress", icon: FaGithub },
+    summary: "線形回帰による点推定", techs: [ "Data Science", "Ruby" ],
+    body: [
     ].join("\n"),
   },
 
@@ -238,6 +279,7 @@ export const WorkItemsFT: WorkItem[] = [
     summary: "printfの再実装", techs: ["C"],
     body: [
       "対応しているフォーマット指定子はcsdiuxXpo%efg.",
+      "(課題改訂により, efg は今は課題範囲外となっている.)",
       "efgとフラグの一見不規則な(ように見える)相互作用に翻弄される10日間だった。"
     ].join("\n"),
   },
