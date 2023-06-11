@@ -56,6 +56,17 @@ const useSetBackdropDefault = () => {
   };
 }
 
+const useSetTextPropertiesDefault = () => {
+
+  const [, setFontSize] = useAtom(styleSettingAtoms.text["font-size"]);
+  const [, setLetterSpacing] = useAtom(styleSettingAtoms.text["letter-spacing"]);
+  const [, setLineHeight] = useAtom(styleSettingAtoms.text["line-height"]);
+  return () => {
+    setFontSize(styleSettingInitialValues.text["font-size"]);
+    setLetterSpacing(styleSettingInitialValues.text["letter-spacing"]);
+    setLineHeight(styleSettingInitialValues.text["line-height"]);
+  };
+}
 
 const AttributeSlider = (props: {
   name: string;
@@ -153,12 +164,14 @@ const PropertyTuner = (props: {
 };
 
 export const TextPropertiesTuner = () => {
+  const setDefault = useSetTextPropertiesDefault();
   return (<div className="flex flex-col gap-2">
     <h3 className='bio-sub-header pb-2 flex flex-row gap-2'>
       <p>
         Text Properties
       </p>
       <LifeButton
+        onClick={() => setDefault()}
       >reset</LifeButton>
     </h3>
     <PropertyTuner name="font-size" atom={styleSettingAtoms.text["font-size"]} />
