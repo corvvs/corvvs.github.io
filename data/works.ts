@@ -21,6 +21,16 @@ export const WorkItemsPrivate: WorkItem[] = [
   },
 
   {
+    title: "JSON Analyzer(仮名)",
+    repo: "https://jet.corvvs.dev/",
+    summary: "JSON分析ツール", techs: [ "Next.js", "TypeScript", "TailwindCSS", "vercel" ],
+    body: [
+      "FirefoxのJSON表示機能は便利なんだけど、いまひとつ痒い所に手が届かねェ・・・",
+      "という思いが高じて作った99%自分のためのJSON分析ツール。",
+    ].join("\n"),
+  },
+
+  {
     title: "42HoursTuningTheBackend",
     repo: { url: "https://github.com/corvvs/42HoursTuningTheBackend", icon: FaGithub },
     summary: "42時間耐久パフォーマンスチューニングコンテスト", techs: [ "nginx", "MySQL", "TypeScript" ],
