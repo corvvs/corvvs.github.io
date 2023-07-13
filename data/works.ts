@@ -1,9 +1,11 @@
 import { ExLink } from "@/components/lv1/ExLinkButton";
+import { BsGlobe } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 
 export type WorkItem = {
   title: string;
   repo?: string | ExLink;
+  links?: (string | ExLink)[];
   techs?: string[];
   summary: string;
   wip?: boolean;
@@ -22,7 +24,10 @@ export const WorkItemsPrivate: WorkItem[] = [
 
   {
     title: "JSON Analyzer(仮名)",
-    repo: "https://jet.corvvs.dev/",
+    links: [
+      { url: "https://jet.corvvs.dev/", icon: BsGlobe },
+      { url: "https://github.com/corvvs/jt", icon: FaGithub },
+    ],
     summary: "JSON分析ツール", techs: [ "Next.js", "TypeScript", "TailwindCSS", "vercel" ],
     body: [
       "FirefoxのJSON表示機能は便利なんだけど、いまひとつ痒い所に手が届かねェ・・・",
