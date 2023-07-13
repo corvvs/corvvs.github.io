@@ -13,6 +13,11 @@ const TechsList = (props: {
 }
 
 const WorksListItem = (item: WorkItem) => {
+  const links = item.links
+    ? <>{ item.links.map((link, i) => <ExLinkButton key={i} item={link} />) }</>
+    : item.repo
+      ? <ExLinkButton item={item.repo} />
+      : null
   return <li className="flex flex-col border-[1px] p-2 w-full sm:max-w-sm gap-2">
     <div className="flex flex-col">
       <div className="flex flex-row items-center border-b-[1px] gap-1">
@@ -20,7 +25,7 @@ const WorksListItem = (item: WorkItem) => {
           { item.wip ? "(WIP)" : null }
           { item.title }
         </h3>
-        { item.repo ? <ExLinkButton item={item.repo} /> : null }
+        { links }
       </div>
       <h4>{ item.summary }</h4>
     </div>
