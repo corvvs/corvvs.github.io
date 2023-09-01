@@ -16,7 +16,7 @@ export const WorkItemsPrivate: WorkItem[] = [
   {
     title: "life",
     repo: { url: "https://github.com/corvvs/corvvs.github.io", icon: FaGithub },
-    summary: "このサイト自体", techs: [ "Next.js", "TypeScript", "TailwindCSS", ],
+    summary: "このサイト自体", techs: ["Next.js", "TypeScript", "TailwindCSS",],
     body: [
       "「2000年代初頭の個人サイト」をコンセプトにお送りしています。"
     ].join("\n"),
@@ -28,7 +28,7 @@ export const WorkItemsPrivate: WorkItem[] = [
       { url: "https://jet.corvvs.dev/", icon: BsGlobe },
       { url: "https://github.com/corvvs/jt", icon: FaGithub },
     ],
-    summary: "JSON分析ツール", techs: [ "Next.js", "TypeScript", "TailwindCSS", "vercel" ],
+    summary: "JSON分析ツール", techs: ["Next.js", "TypeScript", "TailwindCSS", "vercel"],
     body: [
       "FirefoxのJSON表示機能は便利なんだけど、いまひとつ痒い所に手が届かねェ・・・",
       "という思いが高じて作った99%自分のためのJSON分析ツール。",
@@ -38,7 +38,7 @@ export const WorkItemsPrivate: WorkItem[] = [
   {
     title: "42HoursTuningTheBackend",
     repo: { url: "https://github.com/corvvs/42HoursTuningTheBackend", icon: FaGithub },
-    summary: "42時間耐久パフォーマンスチューニングコンテスト", techs: [ "nginx", "MySQL", "TypeScript" ],
+    summary: "42時間耐久パフォーマンスチューニングコンテスト", techs: ["nginx", "MySQL", "TypeScript"],
     body: [
       "3人チームによる対抗戦。",
       "42時間の競技時間内にWebアプリケーションの性能を可能な限り向上させる, いわゆる ISUCON 形式のコンテスト。",
@@ -49,7 +49,7 @@ export const WorkItemsPrivate: WorkItem[] = [
   {
     title: "graint",
     repo: { url: "https://github.com/corvvs/graint", icon: FaGithub },
-    summary: "初歩的な重力三体問題のシミュレータ", techs: [ "C", "gnuplot", ],
+    summary: "初歩的な重力三体問題のシミュレータ", techs: ["C", "gnuplot",],
     body: [
       "古典力学の重力三体問題を, 微分方程式を数値的に解くことでシミュレートするプログラム。",
       "gnuplot でアニメーションを作るスキルが身に付いた。無駄に。",
@@ -59,9 +59,25 @@ export const WorkItemsPrivate: WorkItem[] = [
 
 export const WorkItemsFT: WorkItem[] = [
   {
+    title: "ssl",
+    repo: { url: "https://github.com/corvvs/orenetutils-ssl", icon: FaGithub }, wip: true,
+    summary: "OpenSSLの暗号際実装", techs: ["C"],
+    body: [
+    ].join("\n"),
+  },
+
+  {
+    title: "tracroute",
+    repo: { url: "https://github.com/corvvs/orenetutils-traceroute", icon: FaGithub }, wip: true,
+    summary: "traceroute コマンドの再現", techs: ["C", "Docker", "Wireshark"],
+    body: [
+    ].join("\n"),
+  },
+
+  {
     title: "ping",
     repo: { url: "https://github.com/corvvs/ding", icon: FaGithub },
-    summary: "inetutils 版 ping コマンドの再現", techs: ["C", "Docker", "Wireshark"], wip: true,
+    summary: "inetutils 版 ping コマンドの再現", techs: ["C", "Docker", "Wireshark"],
     body: [
       "いまいち使い方がわかってないコマンドの1つである ping を実装する。",
       "要件とは直接関係しないのだが, 初めてパケットキャプチャなるものをやってみた。",
@@ -85,7 +101,7 @@ export const WorkItemsFT: WorkItem[] = [
     repo: { url: "https://github.com/corvvs/num", icon: FaGithub },
     summary: "実行・オブジェクトファイルを解析するコマンド nm の実装", techs: ["C"], wip: true,
     body: [
-      "バイナリファイルからシンボル情報を抽出して表示する、という、", 
+      "バイナリファイルからシンボル情報を抽出して表示する、という、",
       "知らない人には本当に 何を言っているのか わからねー ことで有名なコマンド nm を作る。",
       "なお, ファイルフォーマットは ELF のみが要求されている。",
     ].join("\n"),
@@ -104,7 +120,7 @@ export const WorkItemsFT: WorkItem[] = [
   {
     title: "MLP",
     repo: { url: "https://github.com/corvvs/mlp", icon: FaGithub },
-    summary: "多層パーセプトロンの実装", techs: [ "Data Science", "TypeScript" ], wip: true,
+    summary: "多層パーセプトロンの実装", techs: ["Data Science", "TypeScript"], wip: true,
     body: [
     ].join("\n"),
   },
@@ -139,7 +155,7 @@ export const WorkItemsFT: WorkItem[] = [
   {
     title: "DSLR",
     repo: { url: "https://github.com/corvvs/kedavra", icon: FaGithub },
-    summary: "ロジスティック回帰による多クラス分類", techs: [ "Data Science", "TypeScript", "SVG" ],
+    summary: "ロジスティック回帰による多クラス分類", techs: ["Data Science", "TypeScript", "SVG"],
     body: [
       "2人チーム。",
       "ホグワーツの生徒1600人の成績データが科目別に与えられるので、成績から所属寮を推定するプログラムを作る。",
@@ -153,7 +169,7 @@ export const WorkItemsFT: WorkItem[] = [
   {
     title: "linear regression",
     repo: { url: "https://github.com/corvvs/regress_progress", icon: FaGithub },
-    summary: "線形回帰による点推定", techs: [ "Data Science", "Ruby" ],
+    summary: "線形回帰による点推定", techs: ["Data Science", "Ruby"],
     body: [
     ].join("\n"),
   },
