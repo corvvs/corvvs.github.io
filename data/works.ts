@@ -67,7 +67,7 @@ export const WorkItemsFT: WorkItem[] = [
   },
 
   {
-    title: "tracroute",
+    title: "traceroute",
     repo: { url: "https://github.com/corvvs/orenetutils-traceroute", icon: FaGithub }, wip: true,
     summary: "traceroute コマンドの再現", techs: ["C", "Docker", "Wireshark"],
     body: [
