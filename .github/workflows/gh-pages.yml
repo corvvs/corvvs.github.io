@@ -2,6 +2,7 @@ name: github pages
 
 # masterブランチにプッシュしたときjobsに記述した操作を行う
 on:
+  workflow_dispatch:
   push:
     branches:
     - main
@@ -11,17 +12,17 @@ jobs:
     # ubuntu OS を仮想マシン上に用意する
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     # Node.js環境のセットアップを行う
     - name: setup node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
     
     # npm install の際にキャッシュを使うよう設定
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
