@@ -97,6 +97,9 @@ export const WorkItemsFT: WorkItem[] = [
     repo: { url: "https://github.com/corvvs/orenetutils-ssl", icon: FaGithub }, wip: true,
     summary: "OpenSSLの暗号再実装", techs: ["C"],
     body: [
+      "\"SSL\" という名前だが, 通信ではなく暗号関連の機能を実装する。",
+      "3つのセクションに分かれており, だいたい「ハッシュ(md5, SHA)」「DES暗号」「RSA暗号」という感じ。",
+      "現在は「ハッシュ」まで終了している。"
     ].join("\n"),
   },
 
