@@ -59,10 +59,47 @@ export const WorkItemsPrivate: WorkItem[] = [
 
 export const WorkItemsFT: WorkItem[] = [
   {
+    title: "Override",
+    wip: true,
+    summary: "CTF Pwn初級編", techs: ["C", "ASM", "Ghidra", "gdb"],
+    body: [
+      "(repoは答えそのものなので非公開)",
+      "CTF問題が10問連続で出題される。",
+      "こちらもすべてPwn問題で, すべてx86 ELFバイナリだが, 64bitバイナリも出題される。",
+      "またデバッグ禁止問題など, ひねりの効いた問題も混ざっている。"
+    ].join("\n"),
+  },
+  {
+    title: "Rainfall",
+    wip: true,
+    summary: "CTF Pwn入門編", techs: ["C", "ASM", "Ghidra", "gdb"],
+    body: [
+      "(repoは答えそのものなので非公開)",
+      "CTF問題が14問連続で出題される。",
+      "すべていわゆるPwn問題で, 32bit x86 ELF バイナリを対象としている。",
+      "シェルコードというものを初めて使った。最初はWebからパクってきただけだったが・・・",
+    ].join("\n"),
+  },
+  {
+    title: "snow_crash",
+    wip: true,
+    summary: "初歩的CTF", techs: ["C", "ASM", "Ghidra", "PHP", "Perl", "Lua"],
+    body: [
+      "(repoは答えそのものなので非公開)",
+      "雑多なCTF問題が15問連続で出題される。",
+      "難易度はそこまで難しくはないが、終盤になるとリバースコンパイルが要求される。",
+      "また、問題のジャンルは偏っている。",
+    ].join("\n"),
+  },
+
+  {
     title: "ssl",
     repo: { url: "https://github.com/corvvs/orenetutils-ssl", icon: FaGithub }, wip: true,
-    summary: "OpenSSLの暗号際実装", techs: ["C"],
+    summary: "OpenSSLの暗号再実装", techs: ["C"],
     body: [
+      "\"SSL\" という名前だが, 通信ではなく暗号関連の機能を実装する。",
+      "3つのセクションに分かれており, だいたい「ハッシュ(md5, SHA)」「DES暗号」「RSA暗号」という感じ。",
+      "現在は「ハッシュ」まで終了している。"
     ].join("\n"),
   },
 
