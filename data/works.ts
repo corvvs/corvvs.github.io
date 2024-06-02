@@ -59,6 +59,15 @@ export const WorkItemsPrivate: WorkItem[] = [
 
 export const WorkItemsFT: WorkItem[] = [
   {
+    title: "ftl_quantum",
+    wip: true,
+    repo: { url: "https://github.com/corvvs/q", icon: FaGithub },
+    summary: "量子コンピュータ基礎の基礎", techs: ["Python", "IBM Quantum", "Qiskit"],
+    body: [
+      "IBM Quantum を使って非常に初歩的な量子回路を実装していく。"
+    ].join("\n"),
+  },
+  {
     title: "Override",
     wip: true,
     summary: "CTF Pwn初級編", techs: ["C", "ASM", "Ghidra", "gdb"],
@@ -82,7 +91,6 @@ export const WorkItemsFT: WorkItem[] = [
   },
   {
     title: "snow_crash",
-    wip: true,
     summary: "初歩的CTF", techs: ["C", "ASM", "Ghidra", "PHP", "Perl", "Lua"],
     body: [
       "(repoは答えそのものなので非公開)",
