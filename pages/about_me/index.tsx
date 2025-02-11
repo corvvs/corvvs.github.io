@@ -21,12 +21,14 @@ const AboutMeContent = () => {
 
     <div className='flex flex-row gap-8'>
       <div
-        className='w-20 h-20 relative  border-[1px]'
+        className='w-20 h-20 relative  border-[1px] overflow-clip'
       >
         <Image
           alt="mr.big"
           src={`/mr.big.png`}
-          fill
+          width={160}
+          height={160}
+          style={{ objectFit: 'cover'}}
         />
       </div>
 
