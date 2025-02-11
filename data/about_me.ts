@@ -5,9 +5,8 @@ import { TbBrandGooglePhotos } from 'react-icons/tb';
 
 export const AMInterests = [
   "手触りのいいUI",
-  "SVG",
-  "GIS",
   "可視化",
+  "並行処理"
 ];
 
 type AMLanguage = {
