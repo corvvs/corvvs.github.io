@@ -23,9 +23,11 @@ export const AMLanguages: AMLanguage[] = [
   { good: 'ok',     name: "Python", },
   { good: 'ok',     name: "Swift", },
   { good: 'well',   name: "TypeScript", },
-  { good: 'not-ok', name: "Go", },
+  { good: 'well', name: "Go", },
   { good: 'not-ok', name: "x68_64Asm", },
   { good: 'not-ok', name: "OCaml", },
+  { good: 'not-ok', name: "Rust", },
+  { good: 'not-ok', name: "Haskell", },
 ];
 
 export type AMSocialItemParams = {
