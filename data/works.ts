@@ -49,6 +49,18 @@ export const WorkItemsPrivate: WorkItem[] = [
   },
 
   {
+    title: "TypeSeer(仮名)",
+    links: [
+      { url: "https://github.com/corvvs/typeseer", icon: FaGithub },
+    ],
+    summary: "JSON型定義生成器", techs: ["TypeScript"],
+    body: [
+      "よくわからないJSONが大量に降ってきた時、それら全てに適合する型定義を作るためのツール。",
+      "今のところはCLIアプリ。"
+    ].join("\n"),
+  },
+
+  {
     title: '42HoursTuningTheBackend',
     repo: {
       url: 'https://github.com/corvvs/42HoursTuningTheBackend',
@@ -141,11 +153,11 @@ export const WorkItemsFT: WorkItem[] = [
     summary: 'CTF Pwn初級編',
     techs: ['C', 'ASM', 'Ghidra', 'gdb'],
     body: [
-      '(repoは答えそのものなので非公開)',
-      'CTF問題が10問連続で出題される。',
-      'こちらもすべてPwn問題で, すべてx86 ELFバイナリだが, 64bitバイナリも出題される。',
-      'またデバッグ禁止問題など, ひねりの効いた問題も混ざっている。',
-    ].join('\n'),
+      "(repoは答えそのものなので非公開)",
+      "CTF問題が10問連続で出題される。",
+      "こちらもすべてPwn問題で, ほぼすべてx86 ELFバイナリだが, 64bit(x86_64)バイナリも出題される。",
+      "またデバッグ禁止問題など, ひねりの効いた問題も混ざっている。"
+    ].join("\n"),
   },
   {
     title: 'Rainfall',
