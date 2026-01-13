@@ -40,7 +40,7 @@ const SelectImageButton = (props: { imageIndex: number; }) => {
 
 export const ChangeBackgroundImage = () => {
   return (
-    <div className='flex flex-row gap-2 flex-wrap'>
+    <div className='grid grid-cols-8 gap-2'>
       {BackgroundImageNames.map((name, i) => <SelectImageButton key={i} imageIndex={i} />)}
       <NoneImageButton />
     </div>
