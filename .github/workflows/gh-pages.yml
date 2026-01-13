@@ -1,64 +1,54 @@
 name: github pages
 
-# masterブランチにプッシュしたときjobsに記述した操作を行う
 on:
   workflow_dispatch:
   push:
-    branches:
-    - main
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-deploy:
-    # ubuntu OS を仮想マシン上に用意する
+  build:
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    # Node.js環境のセットアップを行う
-    - name: setup node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24.x'
-        cache: 'npm'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: 'npm'
 
-    # npm install の際にキャッシュを使うよう設定
-    - name: Cache dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+      - run: npm ci
 
-    # package.jsonに基づき依存パッケージをインストールする
-    - name: install
-      run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
 
-    # Next.jsアプリをビルドする
-    # プロジェクトルート直下に.nextディレクトリができる
-    - name: build
-      run: npm run build
-      env:
-        NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+      - run: npm run export
+        env:
+          NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
 
-    # 静的なHTMLとしてNext.jsアプリを生成する
-    # プロジェクトルート直下にoutディレクトリができる
-    # そのなかに、HTMLファイル群と、それらが読み込むJSファイル群を収めた_nextディレクトリがある
-    - name: export
-      run: npm run export
-      env:
-        NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+      - run: touch ./out/.nojekyll
 
-    # しかしGitHub Pagesの仕様として_から始まるディレクトリが見えず404となる
-    # つまりHTMLからJSを読み込めない
-    # これを回避するために.nojekyllファイルをoutディレクトリに作る
-    - name: add nojekyll
-      run: touch ./out/.nojekyll
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
 
-    # gh-pagesブランチにoutディレクトリの中身をプッシュする
-    # gh-pagesブランチは自動的に作成される
-    - name: deploy
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-        publish_dir: ./out
+  deploy:
+    runs-on: ubuntu-24.04
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
