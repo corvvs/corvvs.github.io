@@ -2,7 +2,7 @@ import { useGalleryMode } from '@/states/gallery';
 import { ImageCaption } from '../lv2/ImageCaption';
 import { GalleryButton } from './GalleryButton';
 
-export default function HomeSpace(props: {}) {
+export default function HomeSpace() {
   const [isGalleryMode] = useGalleryMode();
 
   return (
