@@ -49,15 +49,19 @@ export const WorkItemsPrivate: WorkItem[] = [
   },
 
   {
-    title: "TypeSeer(仮名)",
+    title: 'TypeSeer(仮名)',
     links: [
-      { url: "https://github.com/corvvs/typeseer", icon: FaGithub },
+      {
+        url: 'https://github.com/corvvs/typeseer',
+        icon: FaGithub,
+      },
     ],
-    summary: "JSON型定義生成器", techs: ["TypeScript"],
+    summary: 'JSON型定義生成器',
+    techs: ['TypeScript'],
     body: [
-      "よくわからないJSONが大量に降ってきた時、それら全てに適合する型定義を作るためのツール。",
-      "今のところはCLIアプリ。"
-    ].join("\n"),
+      'よくわからないJSONが大量に降ってきた時、それら全てに適合する型定義を作るためのツール。',
+      '今のところはCLIアプリ。',
+    ].join('\n'),
   },
 
   {
@@ -153,15 +157,14 @@ export const WorkItemsFT: WorkItem[] = [
     summary: 'CTF Pwn初級編',
     techs: ['C', 'ASM', 'Ghidra', 'gdb'],
     body: [
-      "(repoは答えそのものなので非公開)",
-      "CTF問題が10問連続で出題される。",
-      "こちらもすべてPwn問題で, ほぼすべてx86 ELFバイナリだが, 64bit(x86_64)バイナリも出題される。",
-      "またデバッグ禁止問題など, ひねりの効いた問題も混ざっている。"
-    ].join("\n"),
+      '(repoは答えそのものなので非公開)',
+      'CTF問題が10問連続で出題される。',
+      'こちらもすべてPwn問題で, ほぼすべてx86 ELFバイナリだが, 64bit(x86_64)バイナリも出題される。',
+      'またデバッグ禁止問題など, ひねりの効いた問題も混ざっている。',
+    ].join('\n'),
   },
   {
     title: 'Rainfall',
-    wip: true,
     summary: 'CTF Pwn入門編',
     techs: ['C', 'ASM', 'Ghidra', 'gdb'],
     body: [
@@ -267,7 +270,6 @@ export const WorkItemsFT: WorkItem[] = [
       'ArgoCD',
       'GitLab',
     ],
-    wip: true,
     body: [
       '2人チーム。',
       '軽量版Kubernertes(k3s, k3d)を使ってクラスタを作り, CD環境を立ち上げる。',
@@ -283,7 +285,6 @@ export const WorkItemsFT: WorkItem[] = [
     },
     summary: '多層パーセプトロンの実装',
     techs: ['Data Science', 'TypeScript'],
-    wip: true,
     body: [].join('\n'),
   },
 
