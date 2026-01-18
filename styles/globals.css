@@ -26,36 +26,42 @@
   font-family: 'PixelMplus';
   src: url('/fonts/PixelMplus12-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'PixelMplus';
   src: url('/fonts/PixelMplus12-Bold.ttf') format('truetype');
   font-weight: bold;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'BananaSlipPlus';
   src: url('/fonts/bananaslipplus.otf') format('opentype');
   font-weight: normal;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'BananaSlipPlus';
   src: url('/fonts/bananaslipplus.otf') format('opentype');
   font-weight: bold;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'SmartFontUI';
   src: url('/fonts/03SmartFontUI.ttf') format('truetype');
   font-weight: normal;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'SmartFontUI';
   src: url('/fonts/03SmartFontUI.ttf') format('truetype');
   font-weight: bold;
+  font-display: block;
 }
 
 body {
