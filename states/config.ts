@@ -28,6 +28,9 @@ export const BackgroundImageNames = [
   'bg22.jpg',
   'bg23.jpg',
   'bg24.jpg',
+  'bg25.jpg',
+  'bg26.jpg',
+  'bg27.jpg',
 ] as const;
 
 export type BackgroundImageName =
@@ -60,6 +63,9 @@ export const backgroundImageCaptions: {
   'bg22.jpg': '大田区 西六郷公園',
   'bg23.jpg': '富山県富山市',
   'bg24.jpg': '新潟県長岡市',
+  'bg25.jpg': '神奈川県三浦市',
+  'bg26.jpg': '川崎市中原区',
+  'bg27.jpg': '横浜市金沢区',
 };
 
 const imageNameKey = 'life_bg_image_name_v2';
