@@ -126,3 +126,50 @@ button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+
+/* 設定画面のスライダー。既定の見た目はテーマから浮くので最低限だけ当てる。 */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 1.2em;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* 既定のフォーカスリングは青くてテーマから浮くので、配色だけ差し替える */
+input[type='range']:focus-visible {
+  outline: 1px solid rgb(209, 217, 206);
+  outline-offset: 2px;
+}
+
+input[type='range']:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 2px;
+  background-color: rgba(209, 217, 206, 0.4);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.7em;
+  height: 0.7em;
+  margin-top: calc(-0.35em + 1px);
+  background-color: rgb(209, 217, 206);
+}
+
+input[type='range']::-moz-range-track {
+  height: 2px;
+  background-color: rgba(209, 217, 206, 0.4);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 0.7em;
+  height: 0.7em;
+  border: none;
+  border-radius: 0;
+  background-color: rgb(209, 217, 206);
+}
