@@ -11,22 +11,34 @@ import {
   useBackgroundImage,
 } from '@/states/config';
 import {
+  isTiltShiftActive,
+  lerpTiltShift,
+  tiltShiftOf,
+  useTiltShiftTable,
+} from '@/states/tiltShift';
+import {
   FreqSepParams,
   FreqSepRenderer,
   easeInOutSine,
 } from './freqSep';
+import { TiltShiftGuide } from './TiltShiftGuide';
 
 // 背景の 3 層。
 //   1. lofi  : 即座に描ける低解像度。hifi が来るまでの土台 (従来どおり)
 //   2. hifi  : 実際に見せている画像
-//   3. canvas: 切り替え中だけ不透明になり、freq sep の遷移を描く
+//   3. canvas: 切り替え中と、チルトシフトがかかっている間だけ不透明になる
 //
-// canvas は遷移中しか出さないので、WebGL2 が無い環境では 1+2 だけが残り
-// 従来と同じ「即座に差し替わる」挙動になる。
+// canvas を出すのは必要なときだけ。チルトシフトを設定していない画像では
+// 従来どおり 1+2 だけが見えているし、WebGL2 が無い環境でも同じになる。
 //
 // 遷移は effect のクリーンアップで中断されないよう ref で駆動する。
 // 実行中に別の画像が選ばれた場合は最新の 1 枚だけを覚えておき、
 // 今の遷移が終わってからそこへ繋ぐ (途中で飛ばないので画が跳ねない)。
+
+// チルトシフトの入り切りで canvas を出し入れするときの時間。
+// ぼけ量 0 の canvas は下の CSS 層とほぼ同じ絵なので、
+// 気持ち馴染ませる以上のことはしなくていい。
+const tiltFadeMs = 140;
 
 const hifiUrl = (n: BackgroundImageName) => `/bg/${n}`;
 const lofiUrl = (n: BackgroundImageName) => `/bg/lofi_${n}`;
@@ -51,6 +63,7 @@ function neighbours(name: BackgroundImageName) {
 
 export const BackgroundLayers = () => {
   const [backgroundImage] = useBackgroundImage();
+  const [tiltTable] = useTiltShiftTable();
   const [displayed, setDisplayed] =
     useState<BackgroundImageName | null>(null);
   // 遷移が終わるたびに増やして、最新の backgroundImage を拾い直させる
@@ -62,14 +75,34 @@ export const BackgroundLayers = () => {
     useRef<BackgroundImageName | null>(null);
   const runningRef = useRef(false);
   const rafRef = useRef(0);
+  const stillRafRef = useRef(0);
   const timerRef = useRef(0);
   const mountedRef = useRef(true);
   const reduceMotionRef = useRef(false);
+  // 遷移の開始時と静止画の描画時に読む。
+  // 遷移の最中に変わった分は settle 後の描き直しで拾う。
+  const tiltTableRef = useRef(tiltTable);
+
+  useEffect(() => {
+    tiltTableRef.current = tiltTable;
+  }, [tiltTable]);
 
   const setDisplayedBoth = useCallback(
     (v: BackgroundImageName | null) => {
       displayedRef.current = v;
       setDisplayed(v);
+    },
+    []
+  );
+
+  const setCanvasOpaque = useCallback(
+    (opaque: boolean, immediate = false) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      canvas.style.transition = immediate
+        ? 'none'
+        : `opacity ${tiltFadeMs}ms linear`;
+      canvas.style.opacity = opaque ? '1' : '0';
     },
     []
   );
@@ -94,11 +127,44 @@ export const BackgroundLayers = () => {
       mountedRef.current = false;
       mq.removeEventListener('change', onChange);
       cancelAnimationFrame(rafRef.current);
+      cancelAnimationFrame(stillRafRef.current);
       window.clearTimeout(timerRef.current);
       rendererRef.current?.dispose();
       rendererRef.current = null;
     };
   }, []);
+
+  // --- 遷移していないときの 1 枚を描く ---
+  // スライダーを掴んで動かすと値が細かく飛んでくるので、
+  // 1 フレームに 1 回へまとめる。描く必要が無いときは canvas を引っ込める。
+  const renderStill = useCallback(() => {
+    cancelAnimationFrame(stillRafRef.current);
+    stillRafRef.current = requestAnimationFrame(() => {
+      if (!mountedRef.current || runningRef.current) return;
+      const renderer = rendererRef.current;
+      const name = displayedRef.current;
+      if (!renderer || !name) {
+        setCanvasOpaque(false);
+        return;
+      }
+      const tilt = tiltShiftOf(tiltTableRef.current, name);
+      if (!isTiltShiftActive(tilt)) {
+        setCanvasOpaque(false);
+        return;
+      }
+      renderer
+        .ensureImage(hifiUrl(name))
+        .then((img) => {
+          if (!mountedRef.current || runningRef.current)
+            return;
+          // 待っている間に別の画像へ移っていたら捨てる
+          if (displayedRef.current !== name) return;
+          renderer.render(img, img, 0, tilt);
+          setCanvasOpaque(true);
+        })
+        .catch(() => undefined);
+    });
+  }, [setCanvasOpaque]);
 
   // --- 画像が変わったら遷移する ---
   // クリーンアップを持たないので、実行中に再評価されても遷移は中断されない。
@@ -118,9 +184,17 @@ export const BackgroundLayers = () => {
       !!next &&
       !reduceMotionRef.current;
     if (!animate) {
+      // canvas に前の画像が残っていると、差し替えたはずの絵が隠れてしまう。
+      // ここでは引っ込めておいて、必要なら renderStill が出し直す。
+      setCanvasOpaque(false, true);
       setDisplayedBoth(next);
       return;
     }
+
+    // 切り替えの前後でチルトシフトの設定は別物なので、遷移の間に繋ぐ。
+    const table = tiltTableRef.current;
+    const tiltPrev = tiltShiftOf(table, prev);
+    const tiltNext = tiltShiftOf(table, next);
 
     const settle = () => {
       runningRef.current = false;
@@ -137,9 +211,9 @@ export const BackgroundLayers = () => {
       .then(([a, b]) => {
         if (!mountedRef.current) return;
 
-        // t=0 は prev そのもの = 下の CSS 層と同じ絵。
+        // t=0 は prev そのもの = 今見えている絵。
         // ここで canvas を不透明にしても見た目は変わらない。
-        renderer.render(a, b, 0);
+        renderer.render(a, b, 0, tiltPrev);
         canvas.style.transition = 'none';
         canvas.style.opacity = '1';
 
@@ -151,7 +225,13 @@ export const BackgroundLayers = () => {
             (performance.now() - startedAt) /
               FreqSepParams.durationMs
           );
-          renderer.render(a, b, easeInOutSine(raw));
+          const t = easeInOutSine(raw);
+          renderer.render(
+            a,
+            b,
+            t,
+            lerpTiltShift(tiltPrev, tiltNext, t)
+          );
           if (raw < 1) {
             rafRef.current = requestAnimationFrame(step);
             return;
@@ -159,6 +239,13 @@ export const BackgroundLayers = () => {
           // t=1 の canvas は next そのもの。CSS 層を next に
           // 差し替えてから canvas を消すので引き渡しは見えない。
           setDisplayedBoth(next);
+          if (isTiltShiftActive(tiltNext)) {
+            // 引き渡す先が無いので canvas は出したままにする。
+            // 下の CSS 層は素の next になるが、上に載っている
+            // チルトシフト済みの next で隠れる。
+            settle();
+            return;
+          }
           rafRef.current = requestAnimationFrame(() => {
             if (!mountedRef.current) return;
             canvas.style.transition = `opacity ${FreqSepParams.fadeOutMs}ms linear`;
@@ -175,7 +262,26 @@ export const BackgroundLayers = () => {
         if (mountedRef.current) setDisplayedBoth(next);
         settle();
       });
-  }, [backgroundImage, settleTick, setDisplayedBoth]);
+  }, [
+    backgroundImage,
+    settleTick,
+    setDisplayedBoth,
+    setCanvasOpaque,
+  ]);
+
+  // --- 表示中の画像かチルトシフトの設定が変わったら描き直す ---
+  useEffect(() => {
+    renderStill();
+  }, [displayed, tiltTable, settleTick, renderStill]);
+
+  // --- 画面サイズが変わったら描き直す ---
+  // canvas の描画バッファは CSS のサイズに自動では追随しない。
+  useEffect(() => {
+    const onResize = () => renderStill();
+    window.addEventListener('resize', onResize);
+    return () =>
+      window.removeEventListener('resize', onResize);
+  }, [renderStill]);
 
   // --- 落ち着いたら前後の画像を温めておく ---
   // 次の切り替えで decode 待ちが入らないようにするためのもの。
@@ -227,6 +333,9 @@ export const BackgroundLayers = () => {
         className="absolute inset-0 z-0 w-full h-full block pointer-events-none"
         style={{ opacity: 0 }}
         aria-hidden
+      />
+      <TiltShiftGuide
+        params={tiltShiftOf(tiltTable, displayed)}
       />
     </>
   );

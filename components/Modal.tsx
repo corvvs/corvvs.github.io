@@ -19,6 +19,11 @@ type Props = {
    * 背景に別のトランジションをパッチする
    */
   backTraPart?: Partial<TransitionParams>;
+  /**
+   * 背景の覆いを差し替える。
+   * 既定は blur が入っているので、背景写真を見ながら操作する画面では外す。
+   */
+  backdropClassName?: string;
 };
 
 export const Modal = ({
@@ -28,6 +33,7 @@ export const Modal = ({
   tra,
   traPart,
   backTraPart,
+  backdropClassName = 'fixed inset-0 z-50 bg-black/30 backdrop-blur-sm',
 }: Props) => {
   /**
    * 本体のデフォルトトランジション
@@ -64,7 +70,7 @@ export const Modal = ({
     <Transition show={isOpen} as={Fragment}>
       <Dialog onClose={closeModal}>
         <Transition.Child {...effectiveBackdropParams} as={Fragment}>
-          <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
+          <div className={backdropClassName} aria-hidden="true" />
         </Transition.Child>
         <Transition.Child {...effectivePanelParams} as={Fragment}>
           <div className="fixed inset-0 z-50 flex flex-1 flex-col items-center justify-center gap-32">

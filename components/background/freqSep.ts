@@ -6,6 +6,11 @@
 // パラメータは実験室の既定値と同じ。
 //
 // A の細部を先に落とし、大構造を中盤で入れ替え、B の細部を最後に立ち上げる。
+//
+// 遷移とは別に、背景へ常時かけるチルトシフト (ぼかし) も同じ 1 パスで持つ。
+// 遷移していないときは render(img, img, 0, tilt) を 1 回描くだけ。
+
+import { TiltShiftParams } from '@/states/tiltShift';
 
 export const FreqSepParams = {
   durationMs: 300,
@@ -52,19 +57,53 @@ uniform float uLoStart;
 uniform float uLoEnd;
 uniform float uHiBStart;
 uniform float uHiGain;
+uniform float uTiltFocus;
+uniform float uTiltWidth;
+uniform float uTiltUp;
+uniform float uTiltDown;
+uniform float uHasB;
 
 float remap01(float x, float a, float b) {
   return clamp((x - a) / max(b - a, 1e-5), 0.0, 1.0);
 }
 
-// 低周波。ミップから拾った LOD をその段で 5x5 ガウスに掛けて均す。
-vec3 lowFreqAt(
-  sampler2D tex, vec2 imgSize, vec2 scale, vec2 offset, vec2 p
+// 合焦帯からの距離をぼけ半径 (画面ピクセル) に変える。
+// 帯の中は 0、帯の外は画面端に向かって線形に増える。
+// 立ち上がりの距離が画面端までに固定されているので、帯を下に寄せるほど
+// 下側は急激にぼける。
+float tiltSigma(float y) {
+  float hw = uTiltWidth * 0.5;
+  float top = uTiltFocus - hw;
+  float bottom = uTiltFocus + hw;
+  if (y < top) {
+    return uTiltUp * clamp((top - y) / max(top, 1e-4), 0.0, 1.0);
+  }
+  if (y > bottom) {
+    return uTiltDown * clamp((y - bottom) / max(1.0 - bottom, 1e-4), 0.0, 1.0);
+  }
+  return 0.0;
+}
+
+// ガウスぼかしの重ね掛けは分散が足し合わさるので、半径は二乗和の平方根。
+float combineSigma(float x, float y) {
+  return sqrt(x * x + y * y);
+}
+
+// 指定した半径でぼかした色。ミップから拾った LOD をその段で 5x5 ガウスに掛けて均す。
+//
+// sigma はピクセルごとに変わる (チルトシフト) ので、下の分岐は非一様になる。
+// 素のサンプルだけは分岐の外で取っておかないと implicit LOD が未定義に
+// なってしまう。ぼかす側は textureLod なので影響を受けない。
+vec3 blurAt(
+  sampler2D tex, vec2 imgSize, vec2 scale, vec2 offset, vec2 p, float sigma
 ) {
-  float imgPxPerScreenPx = imgSize.x * scale.x / max(uResolution.x, 1.0);
-  float lod = max(0.0, log2(max(uSigma, 1.0) * imgPxPerScreenPx * 0.5));
-  vec2 texel = exp2(lod) / imgSize;
   vec2 base = p * scale + offset;
+  vec3 sharp = texture(tex, base).rgb;
+  if (sigma <= 1.0) return sharp;
+
+  float imgPxPerScreenPx = imgSize.x * scale.x / max(uResolution.x, 1.0);
+  float lod = max(0.0, log2(sigma * imgPxPerScreenPx * 0.5));
+  vec2 texel = exp2(lod) / imgSize;
 
   vec3 acc = vec3(0.0);
   float wsum = 0.0;
@@ -80,10 +119,26 @@ vec3 lowFreqAt(
 }
 
 void main() {
-  vec3 a = texture(uTexA, v_uv * uScaleA + uOffsetA).rgb;
-  vec3 b = texture(uTexB, v_uv * uScaleB + uOffsetB).rgb;
-  vec3 la = lowFreqAt(uTexA, uSizeA, uScaleA, uOffsetA, v_uv);
-  vec3 lb = lowFreqAt(uTexB, uSizeB, uScaleB, uOffsetB, v_uv);
+  // チルトシフトは「素材の側を先にぼかしておく」形で入れる。
+  // a/b が既にぼけていれば hi (= a - la) は自然に痩せるので、
+  // 遷移の最中もチルトシフトが乗ったまま繋がる。
+  // 帯の中では sTilt = 0 なので、元の式にそのまま戻る。
+  float sTilt = tiltSigma(v_uv.y);
+  float sLow = combineSigma(uSigma, sTilt);
+
+  vec3 a = blurAt(uTexA, uSizeA, uScaleA, uOffsetA, v_uv, sTilt);
+  vec3 la = blurAt(uTexA, uSizeA, uScaleA, uOffsetA, v_uv, sLow);
+
+  // 静止画を描くとき (A と B が同じ画像) は B 側を数えない。
+  // 同じテクスチャを同じ変換で引くだけなので結果は変わらず、
+  // ぼかしのサンプル数がちょうど半分で済む。uHasB は uniform なので
+  // 分岐は一様、中で texture() を呼んでも問題ない。
+  vec3 b = a;
+  vec3 lb = la;
+  if (uHasB > 0.5) {
+    b = blurAt(uTexB, uSizeB, uScaleB, uOffsetB, v_uv, sTilt);
+    lb = blurAt(uTexB, uSizeB, uScaleB, uOffsetB, v_uv, sLow);
+  }
 
   float wA = 1.0 - smoothstep(0.0, max(uHiAEnd, 1e-3), uT);
   float wB = smoothstep(min(uHiBStart, 0.999), 1.0, uT);
@@ -165,7 +220,8 @@ export class FreqSepRenderer {
       alpha: false,
       antialias: false,
       premultipliedAlpha: false,
-      // 遷移中しか描かないので、最後のフレームが残るようにしておく
+      // 必要なときにしか描かないので、最後のフレームが残るようにしておく。
+      // チルトシフト表示中は 1 枚描いたきり放置するため、これがないと消える。
       preserveDrawingBuffer: true,
     });
     if (!gl) throw new Error('webgl2 unavailable');
@@ -289,6 +345,12 @@ export class FreqSepRenderer {
     return task;
   }
 
+  // CSS ピクセル 1 に対する描画バッファのピクセル数。
+  // チルトシフトのぼけ量を CSS ピクセルで受け取って画面ピクセルに直すのに使う。
+  // これを通しておかないと、同じ設定でも dpr や解像度の上限次第で
+  // ぼけの強さが変わってしまう。
+  private pixelScale = 1;
+
   private resize(cssW: number, cssH: number) {
     const canvas = this.gl.canvas as HTMLCanvasElement;
     const dpr = Math.min(
@@ -308,10 +370,21 @@ export class FreqSepRenderer {
       canvas.width = w;
       canvas.height = h;
     }
+    this.pixelScale = scale;
     this.gl.viewport(0, 0, w, h);
   }
 
-  render(a: LoadedImage, b: LoadedImage, t: number) {
+  /**
+   * A から B への遷移を時刻 t (0..1) で描く。
+   * 静止画を出したいときは render(img, img, 0, tilt) でよい
+   * (t=0 は A そのものなので、チルトシフトだけが乗った 1 枚になる)。
+   */
+  render(
+    a: LoadedImage,
+    b: LoadedImage,
+    t: number,
+    tilt?: TiltShiftParams | null
+  ) {
     const gl = this.gl;
     const canvas = gl.canvas as HTMLCanvasElement;
     this.resize(canvas.clientWidth, canvas.clientHeight);
@@ -356,6 +429,28 @@ export class FreqSepRenderer {
     gl.uniform1f(
       this.loc('uHiGain'),
       FreqSepParams.hiGain
+    );
+
+    // ぼけ量が 0 なら tiltSigma() は常に 0 を返すので、
+    // focus/width が何であれ元の描画に戻る。
+    gl.uniform1f(this.loc('uHasB'), a === b ? 0 : 1);
+
+    const s = this.pixelScale;
+    gl.uniform1f(
+      this.loc('uTiltFocus'),
+      tilt ? tilt.focus : 0.5
+    );
+    gl.uniform1f(
+      this.loc('uTiltWidth'),
+      tilt ? tilt.width : 1
+    );
+    gl.uniform1f(
+      this.loc('uTiltUp'),
+      tilt ? tilt.sigmaUp * s : 0
+    );
+    gl.uniform1f(
+      this.loc('uTiltDown'),
+      tilt ? tilt.sigmaDown * s : 0
     );
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
