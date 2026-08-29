@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { BackdropFilterTuner, TestingArea, TextPropertiesTuner, styleSettingAtoms } from "@/components/lab";
 import { useAtom } from "jotai";
+import Link from "next/link";
 
 const LabContent = () => {
   const [blur] = useAtom(styleSettingAtoms.backdrop.blur);
@@ -16,6 +17,13 @@ const LabContent = () => {
         backdropFilter: `blur(${blur}px) brightness(${brightness}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) saturate(${saturate}%)`,
       }}
     >
+
+      <div className="flex flex-col gap-2">
+        <h3 className='bio-sub-header pb-2'>実験ページ</h3>
+        <Link className="column-item border-[1px] px-2 py-[0.1em] self-start" href="/lab/background-transition">
+          背景写真トランジション
+        </Link>
+      </div>
 
       <div className="flex flex-col gap-4">
         <BackdropFilterTuner />
