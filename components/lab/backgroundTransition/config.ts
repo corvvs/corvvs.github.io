@@ -90,6 +90,9 @@ export const horizonTable: Record<
   'bg25.jpg': 0.5,  
   'bg26.jpg': 0.5,  
   'bg27.jpg': 0.5,  
+  'bg28.jpg': 0.5,  
+  'bg29.jpg': 0.5,  
+  'bg30.jpg': 0.5,  
 };
 
 // depth map を用意した画像。Depth Peel はこの組み合わせでのみ有効。
