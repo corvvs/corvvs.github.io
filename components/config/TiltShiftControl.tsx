@@ -114,8 +114,8 @@ export const TiltShiftControl = () => {
       <div className="flex flex-row items-center justify-between gap-4 pt-2">
         <p className="opacity-60">
           {disabled
-            ? '背景を選ぶと使えます'
-            : '設定は画像ごとに憶えます'}
+            ? '背景を選択してください'
+            : '設定は画像ごとに記憶されます'}
         </p>
         <button
           className="border-[1px] column-item px-2 disabled:opacity-30"
